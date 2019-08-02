@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tmall.dao.PmsProductCategoryMapper">
+	
+	<resultMap id="BaseResultMap" type="com.tmall.model.PmsProductCategory">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="parent_id" jdbcType="BIGINT" property="parentId" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="level" jdbcType="INTEGER" property="level" />
+		<result column="show_status" jdbcType="INTEGER" property="showStatus" />
+		<result column="sort" jdbcType="INTEGER" property="sort" />
+		<result column="icon" jdbcType="VARCHAR" property="icon" />
+		<result column="keywords" jdbcType="VARCHAR" property="keywords" />
+		<result column="description" jdbcType="LONGVARCHAR" property="description" />
+	</resultMap>
+	
+	<select id="getPmsProductCategoryList" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		SELECT * FROM pms_product_category WHERE parent_id = #{parentId} ORDER BY sort DESC 
+	</select>
+  
+	<select id="getPmsProductCategory" parameterType="com.tmall.model.PmsProductCategory" resultMap="BaseResultMap">
+		SELECT * FROM pms_product_category 
+		<where>
+			<if test="id != null">
+				AND id = #{id}
+			</if>
+			<if test="parentId != null">
+				AND parent_id = #{parentId}
+			</if>
+		</where>
+	</select>
+  
+	<update id="updateShowStatus" parameterType="com.tmall.model.PmsProductCategory">
+		UPDATE pms_product_category SET show_status = #{showStatus} WHERE id = #{id};
+	</update>
+  
+	<insert id="insertPmsProductCategory" parameterType="com.tmall.model.PmsProductCategory" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO pms_product_category 
+			(parent_id,name,level,show_status,sort,icon,keywords,description)
+			VALUES (
+				#{parentId},#{name},#{level},#{showStatus},#{sort},#{icon},#{keywords},#{description}
+			)
+	</insert>
+	
+	<update id="updatePmsProductCategory" parameterType="com.tmall.model.PmsProductCategory">
+		UPDATE pms_product_category SET 
+	  		parent_id = #{parentId},
+		  	name = #{name},
+		  	level = #{level},
+		  	show_status = #{showStatus},
+		  	sort = #{sort},
+		  	icon = #{icon},
+		  	keywords = #{keywords},
+		  	description = #{description}
+		WHERE id = #{id}
+	</update>
+</mapper>
