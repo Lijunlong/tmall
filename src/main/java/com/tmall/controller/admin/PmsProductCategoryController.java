@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tmall.common.api.CommonPage;
 import com.tmall.common.api.CommonResult;
 import com.tmall.dto.PmsProductCategoryParam;
+import com.tmall.dto.PmsProductCategoryWithChildrenItem;
 import com.tmall.model.PmsProductCategory;
 import com.tmall.service.PmsProductCategoryService;
 
@@ -90,6 +91,14 @@ public class PmsProductCategoryController {
         } else {
             return CommonResult.failed();
         }
+    }
+    
+    @ApiOperation("查询所有一级分类及子分类")
+    @RequestMapping(value = "/list/withChildren", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<List<PmsProductCategoryWithChildrenItem>> listWithChildren() {
+        List<PmsProductCategoryWithChildrenItem> list = productCategoryService.listWithChildren();
+        return CommonResult.success(list);
     }
     
 }

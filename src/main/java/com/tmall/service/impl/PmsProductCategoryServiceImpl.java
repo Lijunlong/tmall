@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.tmall.dao.PmsProductCategoryMapper;
 import com.tmall.dto.PmsProductCategoryParam;
+import com.tmall.dto.PmsProductCategoryWithChildrenItem;
 import com.tmall.model.PmsProductCategory;
 import com.tmall.service.PmsProductCategoryService;
 
@@ -52,6 +53,11 @@ public class PmsProductCategoryServiceImpl implements PmsProductCategoryService 
 		pmsProductCategory.setId(id);
         BeanUtils.copyProperties(pmsProductCategoryParam, pmsProductCategory);
 		return productCategoryMapper.updatePmsProductCategory(pmsProductCategory);
+	}
+
+	@Override
+	public List<PmsProductCategoryWithChildrenItem> listWithChildren() {
+		return productCategoryMapper.listWithChildren();
 	}
 
 }

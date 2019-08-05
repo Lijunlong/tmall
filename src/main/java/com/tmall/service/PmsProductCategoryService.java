@@ -3,6 +3,7 @@ package com.tmall.service;
 import java.util.List;
 
 import com.tmall.dto.PmsProductCategoryParam;
+import com.tmall.dto.PmsProductCategoryWithChildrenItem;
 import com.tmall.model.PmsProductCategory;
 
 /**
@@ -22,5 +23,7 @@ public interface PmsProductCategoryService {
 	List<PmsProductCategory> getPmsProductCategory(PmsProductCategory pmsProductCategory);
 
 	int update(Long id, PmsProductCategoryParam pmsProductCategoryParam);
+
+	List<PmsProductCategoryWithChildrenItem> listWithChildren();
 	
 }

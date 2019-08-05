@@ -88,6 +88,9 @@ public class PmsProduct implements Serializable {
 
 	@ApiModelProperty(value = "品牌名称")
 	private String brandName;
+	
+	@ApiModelProperty(value = "品牌id")
+	private Long brandId;
 
 	@ApiModelProperty(value = "商品分类名称")
 	private String productCategoryName;
@@ -301,6 +304,14 @@ public class PmsProduct implements Serializable {
 
 	public void setBrandName(String brandName) {
 		this.brandName = brandName;
+	}
+
+	public Long getBrandId() {
+		return brandId;
+	}
+
+	public void setBrandId(Long brandId) {
+		this.brandId = brandId;
 	}
 
 	public String getProductCategoryName() {

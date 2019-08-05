@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tmall.dao.UmsPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.tmall.model.UmsPermission">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pid" jdbcType="BIGINT" property="pid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="uri" jdbcType="VARCHAR" property="uri" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="updater" jdbcType="VARCHAR" property="updater" />
+  </resultMap>
+  <select id="getUmsPermissionList" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select *
+      from ums_permission
+        where id in
+          (select permission_id
+            from ums_role_permission_relation
+              where role_id in
+                (select role_id
+                  from ums_admin_role_relation
+                    where admin_id = #{adminId}));
+  </select>
+</mapper>

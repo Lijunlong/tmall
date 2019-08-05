@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.tmall.dto.PmsProductCategoryWithChildrenItem;
 import com.tmall.model.PmsProductCategory;
 
 public interface PmsProductCategoryMapper {
@@ -22,5 +23,7 @@ public interface PmsProductCategoryMapper {
 	List<PmsProductCategory> getPmsProductCategory(PmsProductCategory pmsProductCategory);
 
 	int updatePmsProductCategory(PmsProductCategory pmsProductCategory);
+
+	List<PmsProductCategoryWithChildrenItem> listWithChildren();
 
 }

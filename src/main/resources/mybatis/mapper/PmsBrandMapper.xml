@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tmall.dao.PmsBrandMapper">
+	
+	<resultMap id="BaseResultMap" type="com.tmall.model.PmsBrand">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+	</resultMap>
+	
+	<select id="selectBrand" parameterType="com.tmall.model.PmsBrand" resultMap="BaseResultMap">
+		SELECT * FROM pms_brand 
+		<where>
+			<if test="id != null">
+				AND id = #{id}
+			</if>
+		</where>
+	</select>
+  
+</mapper>
