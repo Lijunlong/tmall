@@ -23,4 +23,8 @@ public class BadRequestException extends RuntimeException {
 		super(msg);
 		this.status = status.value();
 	}
+	
+	public BadRequestException(String msg,Exception e) {
+		super(msg,e);
+	}
 }

@@ -18,6 +18,48 @@
 		SELECT * FROM quartz_job WHERE is_pause = '0' 
 	</select>
 	
+	<select id="selectQuartzJobById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		SELECT * FROM quartz_job WHERE id = #{id}
+	</select>
+	
+	<select id="selectQuartzJob" parameterType="com.tmall.quartz.model.QuartzJob" resultMap="BaseResultMap">
+		SELECT * FROM quartz_job 
+		<where>
+			<if test="id != null">
+				AND id = #{id},
+			</if>
+			<if test="jobName != null">
+				AND job_name = #{jobName},
+			</if>
+			<if test="beanName != null">
+				AND bean_name = #{beanName},
+			</if>
+			<if test="methodName != null">
+				AND method_name = #{methodName},
+			</if>
+			<if test="params != null">
+				AND params = #{params},
+			</if>
+			<if test="cronExpression != null">
+				AND cron_expression = #{cronExpression},
+			</if>
+			<if test="isPause != null">
+				AND is_pause = #{isPause},
+			</if>
+			<if test="remark != null">
+				AND remark = #{remark},
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertQuartzJob" parameterType="com.tmall.quartz.model.QuartzJob" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO quartz_job (
+			bean_name,cron_expression,is_pause,job_name,method_name,params,remark,update_time
+		) VALUES (
+			#{jobName},#{cronExpression},#{isPause},#{jobName},#{methodName},#{params},#{remark},#{updateTime}
+		)
+	</insert>
+	
 	<update id="updateQuartzJob" parameterType="com.tmall.quartz.model.QuartzJob">
 		UPDATE quartz_job 
 		<trim prefix="SET" suffixOverrides=",">
@@ -50,6 +92,6 @@
 	</update>
 	
 	<delete id="deleteQuartzJobById" parameterType="java.lang.Long">
-		DELETE quartz_job WHERE id = #{id}
+		DELETE FROM quartz_job WHERE id = #{id}
 	</delete>
 </mapper>

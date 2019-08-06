@@ -14,7 +14,6 @@ public class TestTask {
 
     public void run(){
     	logger.info("执行成功");
-    	System.err.println("1111111111111");
     }
 
     public void run1(String str){
