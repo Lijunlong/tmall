@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tmall.dao.QuartzJobMapper">
+	
+	<resultMap id="BaseResultMap" type="com.tmall.quartz.model.QuartzJob">
+		<id column="id" jdbcType="BIGINT" property="id" />
+	    <result column="job_name" jdbcType="VARCHAR" property="jobName" />
+	    <result column="bean_name" jdbcType="VARCHAR" property="beanName" />
+	    <result column="method_name" jdbcType="VARCHAR" property="methodName" />
+	    <result column="params" jdbcType="VARCHAR" property="params" />
+	    <result column="cron_expression" jdbcType="VARCHAR" property="cronExpression" />
+	    <result column="is_pause" jdbcType="INTEGER" property="isPause" />
+	    <result column="remark" jdbcType="VARCHAR" property="remark" />
+	    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	
+	<select id="findByIsPauseIsFalse" parameterType="com.tmall.quartz.model.QuartzJob" resultMap="BaseResultMap">
+		SELECT * FROM quartz_job WHERE is_pause = '0' 
+	</select>
+	
+	<update id="updateQuartzJob" parameterType="com.tmall.quartz.model.QuartzJob">
+		UPDATE quartz_job 
+		<trim prefix="SET" suffixOverrides=",">
+	      <if test="jobName != null">
+	        job_name = #{jobName},
+	      </if>
+	      <if test="beanName != null">
+	        bean_name = #{beanName},
+	      </if>
+	      <if test="methodName != null">
+	        method_name = #{methodName},
+	      </if>
+	      <if test="params != null">
+	        params = #{params},
+	      </if>
+	      <if test="cronExpression != null">
+	        cron_expression = #{cronExpression},
+	      </if>
+	      <if test="isPause != null">
+	        is_pause = #{isPause},
+	      </if>
+	      <if test="remark != null">
+	        remark = #{remark},
+	      </if>
+	      <if test="updateTime != null">
+	        update_time = #{updateTime},
+	      </if>
+	    </trim>
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteQuartzJobById" parameterType="java.lang.Long">
+		DELETE quartz_job WHERE id = #{id}
+	</delete>
+</mapper>

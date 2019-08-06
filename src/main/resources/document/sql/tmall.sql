@@ -11,11 +11,29 @@
  Target Server Version : 80011
  File Encoding         : 65001
 
- Date: 02/08/2019 17:59:50
+ Date: 06/08/2019 13:51:29
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for pms_brand
+-- ----------------------------
+DROP TABLE IF EXISTS `pms_brand`;
+CREATE TABLE `pms_brand`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '品牌名称',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of pms_brand
+-- ----------------------------
+INSERT INTO `pms_brand` VALUES (1, '小米');
+INSERT INTO `pms_brand` VALUES (2, '华为');
+INSERT INTO `pms_brand` VALUES (3, '三星');
+INSERT INTO `pms_brand` VALUES (4, '苹果');
 
 -- ----------------------------
 -- Table structure for pms_product
@@ -47,13 +65,20 @@ CREATE TABLE `pms_product`  (
   `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关键字',
   `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注信息',
   `album_pics` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '画册图片，连产品图片限制为5张，以逗号分割',
+  `brand_id` bigint(20) NULL DEFAULT NULL COMMENT '品牌id（外键）',
   `brand_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '品牌名称',
+  `product_category_id` bigint(20) NULL DEFAULT NULL COMMENT '产品分类id（外键）',
   `product_category_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '产品分类名称',
-  `product_category_id` bigint(20) NULL DEFAULT NULL COMMENT '产品分类id',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `index_product_sn`(`product_sn`) USING BTREE,
   INDEX `index_name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品信息' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of pms_product
+-- ----------------------------
+INSERT INTO `pms_product` VALUES (1, '11', 'http://localhost:9092/tmall/upload/20190805175703baidu.png', '11111', NULL, 1, 1, 1, NULL, 111, NULL, 11.00, NULL, '111', '1111', 111.00, 11, NULL, '11', 111.00, 1, '1,2,3', '111', '1111', NULL, 4, NULL, NULL, NULL);
+INSERT INTO `pms_product` VALUES (2, '111', 'http://localhost:9092/tmall/upload/20190805180601baidu.png', '1111', NULL, 1, 1, 1, NULL, 111, NULL, 111.00, NULL, '1111', '111', 111.00, 111, NULL, '11', 11.00, 1, '1,2,3', '11', '1111', NULL, 2, '华为', 7, '测试33');
 
 -- ----------------------------
 -- Table structure for pms_product_category
@@ -70,14 +95,61 @@ CREATE TABLE `pms_product_category`  (
   `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关键字',
   `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '描述',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品分类' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品分类' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_product_category
 -- ----------------------------
 INSERT INTO `pms_product_category` VALUES (5, 0, '测试11', 0, 1, 1, 'http://localhost:9092/tmall/upload/20190801161147baidu.png', '测试11测试11测试11', '测试11测试11测试11测试11测试11');
-INSERT INTO `pms_product_category` VALUES (6, 0, '测试22', 0, 0, 2, 'http://localhost:9092/tmall/upload/20190801161455baidu.png', '测试22测试22', '测试22测试22测试22测试22测试22测试22');
+INSERT INTO `pms_product_category` VALUES (6, 0, '测试22', 0, 0, 2, 'http://localhost:9092/tmall/upload/20190805150708裤子.jpg', '测试22测试22', '测试22测试22测试22测试22测试22测试22');
 INSERT INTO `pms_product_category` VALUES (7, 6, '测试33', 1, 0, 3, 'http://localhost:9092/tmall/upload/201908011615416.4加班.png', '测试33测试33', '测试33测试33测试33测试33测试33');
+INSERT INTO `pms_product_category` VALUES (8, 0, '111', 0, 1, 111, 'http://localhost:9092/tmall/upload/20190805105612baidu.png', '11', '1221');
+INSERT INTO `pms_product_category` VALUES (9, 0, '111111', 0, 0, 111, 'http://localhost:9092/tmall/upload/20190805150750souhu.jpg', '111', '1111');
+
+-- ----------------------------
+-- Table structure for quartz_job
+-- ----------------------------
+DROP TABLE IF EXISTS `quartz_job`;
+CREATE TABLE `quartz_job`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `bean_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Spring Bean名称',
+  `cron_expression` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'cron 表达式',
+  `is_pause` int(1) NULL DEFAULT NULL COMMENT '状态：1暂停、0启用',
+  `job_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '任务名称',
+  `method_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方法名称',
+  `params` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '参数',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '创建或更新日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of quartz_job
+-- ----------------------------
+INSERT INTO `quartz_job` VALUES (4, 'testTask', '0/5 * * * * ? ', 1, '测试', 'run', NULL, '测试', '2019-08-06 11:40:50');
+
+-- ----------------------------
+-- Table structure for quartz_job_log
+-- ----------------------------
+DROP TABLE IF EXISTS `quartz_job_log`;
+CREATE TABLE `quartz_job_log`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `job_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '任务名称',
+  `bean_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Bean名称',
+  `method_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方法名称',
+  `params` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '参数',
+  `cron_expression` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'cron表达式',
+  `is_success` int(1) NULL DEFAULT NULL COMMENT '状态，1失败、0成功',
+  `exception_detail` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '异常详细',
+  `time` bigint(20) NULL DEFAULT NULL COMMENT '耗时（毫秒）',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of quartz_job_log
+-- ----------------------------
+INSERT INTO `quartz_job_log` VALUES (39, '测试', 'testTask', 'run', NULL, '0/5 * * * * ? ', 1, 'java.lang.ArithmeticException: / by zero\r\n	at com.tmall.quartz.util.ExecutionJob.executeInternal(ExecutionJob.java:56)\r\n	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)\r\n	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)\r\n	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)\r\n', 16, '2019-08-06 13:43:05');
 
 -- ----------------------------
 -- Table structure for ums_admin
@@ -104,7 +176,7 @@ CREATE TABLE `ums_admin`  (
 -- ----------------------------
 -- Records of ums_admin
 -- ----------------------------
-INSERT INTO `ums_admin` VALUES (1123073311669096448, 'admin', '$2a$10$4XqjamdaivwxoH6ovutK4OU15n6r.xE/JJ8d5jGDtAhJMVbRGI6be', 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3357786243,3135716437&fm=26&gp=0.jpg', '系统管理员', '88888888@qq.com', NULL, '88888888', 1, '2019-08-02 15:39:47', '2019-07-26 15:53:07', NULL, '系统管理员', NULL);
+INSERT INTO `ums_admin` VALUES (1123073311669096448, 'admin', '$2a$10$4XqjamdaivwxoH6ovutK4OU15n6r.xE/JJ8d5jGDtAhJMVbRGI6be', 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3357786243,3135716437&fm=26&gp=0.jpg', '系统管理员', '88888888@qq.com', NULL, '88888888', 1, '2019-08-05 15:05:59', '2019-07-26 15:53:07', NULL, '系统管理员', NULL);
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation
@@ -153,7 +225,7 @@ CREATE TABLE `ums_role`  (
   `creater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `updater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户角色表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户角色表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for ums_role_permission_relation

@@ -34,7 +34,8 @@ import com.tmall.service.UmsPermissionService;
 import com.tmall.service.UmsAdminLoginService;
 
 /**
- * SpringSecurity的配置 Created by macro on 2018/4/26.
+ * SpringSecurity的配置
+ * Created by Mr.Li on 2019/08/06
  */
 @Configuration
 @EnableWebSecurity

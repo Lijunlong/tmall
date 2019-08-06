@@ -8,8 +8,6 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +27,6 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "FileUploadController", description = "文件上传管理")
 @RequestMapping("/files")
 public class FileUploadController extends BaseController {
-	protected Logger logger = LogManager.getLogger(FileUploadController.class);
 
 	@ApiOperation("上传文件")
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
