@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tmall.common.api.CommonPage;
 import com.tmall.common.api.CommonResult;
 import com.tmall.quartz.model.QuartzJob;
+import com.tmall.quartz.model.QuartzJobLog;
+import com.tmall.service.QuartzJobLogService;
 import com.tmall.service.QuartzJobService;
 
 import io.swagger.annotations.Api;
@@ -32,6 +34,9 @@ public class SysTimingController {
     
 	@Autowired
 	private QuartzJobService quartzJobService;
+	
+	@Autowired
+	private QuartzJobLogService quartzJobLogService;
 	
     @ApiOperation("分页查询定时任务")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -97,5 +102,14 @@ public class SysTimingController {
 		}else {
 			return CommonResult.failed(map.get("error").toString());
 		}
+    }
+    
+    @ApiOperation("分页查询定时任务日志")
+    @RequestMapping(value = "/log/list", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<CommonPage<QuartzJobLog>> getLogList(@RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+                                                       @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
+        List<QuartzJobLog> quartzJobLogList = quartzJobLogService.getQuartzJobLogList(pageSize, pageNum);
+        return CommonResult.success(CommonPage.restPage(quartzJobLogList));
     }
 }

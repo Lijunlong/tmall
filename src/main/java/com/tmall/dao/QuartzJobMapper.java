@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.tmall.quartz.model.QuartzJob;
+import com.tmall.quartz.model.QuartzJobLog;
 
 public interface QuartzJobMapper {
 
@@ -19,4 +20,5 @@ public interface QuartzJobMapper {
 	int deleteQuartzJobById(@Param("id")Long id);
 
 	Long insertQuartzJob(QuartzJob quartzJob);
+
 }

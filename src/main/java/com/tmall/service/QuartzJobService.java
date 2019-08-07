@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.tmall.quartz.model.QuartzJob;
+import com.tmall.quartz.model.QuartzJobLog;
 
 public interface QuartzJobService {
 
@@ -18,5 +19,5 @@ public interface QuartzJobService {
 	Map deleteJob(Long id);
 
 	Long insertQuartzJob(QuartzJob quartzJob);
-
+	
 }

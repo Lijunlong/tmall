@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.tmall.dao.QuartzJobMapper;
 import com.tmall.quartz.model.QuartzJob;
+import com.tmall.quartz.model.QuartzJobLog;
 import com.tmall.quartz.util.QuartzManage;
 import com.tmall.service.QuartzJobService;
 
@@ -87,5 +88,5 @@ public class QuartzJobServiceImpl implements QuartzJobService {
 		quartzJobMapper.insertQuartzJob(quartzJob);
 		return quartzJob.getId();
 	}
-	
+
 }

@@ -12,8 +12,12 @@
 	    <result column="is_success" jdbcType="INTEGER" property="isSuccess" />
 	    <result column="exception_detail" jdbcType="VARCHAR" property="exceptionDetail" />
 	    <result column="time" jdbcType="BIGINT" property="time" />
-	    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
 	</resultMap>
+	
+	<select id="getQuartzJobLogList" parameterType="com.tmall.quartz.model.QuartzJobLog" resultMap="BaseResultMap">
+		SELECT * FROM quartz_job_log ORDER BY create_time DESC
+	</select>
 	
 	<insert id="insertQuartzJobLog" parameterType="com.tmall.quartz.model.QuartzJobLog" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO quartz_job_log (
