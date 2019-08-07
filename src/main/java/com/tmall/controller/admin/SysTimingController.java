@@ -24,11 +24,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * 系统工具管理
+ * 系统工具定时任务管理
  * Created by Mr.Li on 2019/08/06
  */
 @Controller
-@Api(tags = "SysTimingController", description = "系统工具管理")
+@Api(tags = "SysTimingController", description = "系统工具定时任务管理")
 @RequestMapping("/system/timing")
 public class SysTimingController {
     

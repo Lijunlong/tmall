@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,8 +32,10 @@ import io.swagger.annotations.ApiOperation;
 public class UmsAdminLoginController {
 	@Autowired
 	private UmsAdminLoginService userService;
-	private String tokenHeader = "Authorization";
-	private String tokenHead = "Bearer";
+	@Value("${jwt.tokenHeader}")
+	private String tokenHeader;
+	@Value("${jwt.tokenHead}")
+	private String tokenHead;
 
 	@ApiOperation(value = "用户注册")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)

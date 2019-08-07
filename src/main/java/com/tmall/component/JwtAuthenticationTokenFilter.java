@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,8 +29,10 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 	private UserDetailsService userDetailsService;
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
-	private String tokenHeader = "Authorization";
-	private String tokenHead = "Bearer";
+	@Value("${jwt.tokenHeader}")
+	private String tokenHeader;
+	@Value("${jwt.tokenHead}")
+	private String tokenHead;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
