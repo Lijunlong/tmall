@@ -74,10 +74,10 @@ public class MyTest extends DemoApplicationTests {
 		String content = null;
 		Context context = new Context();
 		// html中填充动态属性值
-		//context.setVariable("username", "码农用户");
-		//context.setVariable("url",
-		//		"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3839527043,3300320047&fm=58&bpow=400&bpoh=648");
-		content = templateEngine.process("hello", context);
+		context.setVariable("username", "码农用户");
+		context.setVariable("url",
+				"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3839527043,3300320047&fm=58&bpow=400&bpoh=648");
+		content = templateEngine.process("email", context);
 		mailUtil.sendHTMLMail(to, subject, content);
 	}
 }
