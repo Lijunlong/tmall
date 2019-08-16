@@ -2,6 +2,7 @@ package com.tmall.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -13,7 +14,10 @@ public class UmsPermission implements Serializable {
 
     @ApiModelProperty(value = "父级权限id")
     private Long pid;
-
+    
+    @ApiModelProperty(value = "别名")
+    private String alias;
+    
     @ApiModelProperty(value = "名称")
     private String name;
 
@@ -30,7 +34,7 @@ public class UmsPermission implements Serializable {
     private String uri;
 
     @ApiModelProperty(value = "启用状态；0->禁用；1->启用")
-    private Integer status;
+    private Integer enabled;
 
     @ApiModelProperty(value = "排序")
     private Integer sort;
@@ -46,6 +50,8 @@ public class UmsPermission implements Serializable {
     
     @ApiModelProperty(value = "修改人")
     private String updater;
+    
+    private List<UmsPermission> children;
 
 	public Long getId() {
 		return id;
@@ -61,6 +67,14 @@ public class UmsPermission implements Serializable {
 
 	public void setPid(Long pid) {
 		this.pid = pid;
+	}
+
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
 	}
 
 	public String getName() {
@@ -103,12 +117,12 @@ public class UmsPermission implements Serializable {
 		this.uri = uri;
 	}
 
-	public Integer getStatus() {
-		return status;
+	public Integer getEnabled() {
+		return enabled;
 	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setEnabled(Integer enabled) {
+		this.enabled = enabled;
 	}
 
 	public Integer getSort() {
@@ -151,4 +165,12 @@ public class UmsPermission implements Serializable {
 		this.updater = updater;
 	}
 
+	public List<UmsPermission> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<UmsPermission> children) {
+		this.children = children;
+	}
+    
 }

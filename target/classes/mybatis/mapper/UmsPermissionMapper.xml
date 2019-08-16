@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.tmall.model.UmsPermission">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="pid" jdbcType="BIGINT" property="pid" />
+    <result column="alias" jdbcType="VARCHAR" property="alias" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="value" jdbcType="VARCHAR" property="value" />
     <result column="uri" jdbcType="VARCHAR" property="uri" />
@@ -14,7 +15,7 @@
     <result column="creater" jdbcType="VARCHAR" property="creater" />
     <result column="updater" jdbcType="VARCHAR" property="updater" />
   </resultMap>
-  <select id="getUmsPermissionList" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="getUmsPermissionListByAdminId" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select *
       from ums_permission
         where id in
@@ -25,4 +26,65 @@
                   from ums_admin_role_relation
                     where admin_id = #{adminId}));
   </select>
+  
+  <select id="selectUmsPermissionListByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	SELECT permission.* FROM ums_permission permission
+		WHERE permission.id IN (
+			SELECT permission_id FROM ums_role_permission_relation WHERE role_id = #{roleId}
+		)
+  </select>
+  
+  <select id="selectUmsPermissionList" parameterType="com.tmall.model.UmsPermission" resultMap="BaseResultMap">
+  	SELECT * FROM ums_permission 
+  	<where>
+  		<if test="name != null">
+  			AND name = #{name}
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="selectUmsPermissionLikeUmsPermission" parameterType="com.tmall.model.UmsPermission" resultMap="BaseResultMap">
+  	SELECT * FROM ums_permission 
+  	<where>
+  		<if test="name != null">
+  			AND name LIKE CONCAT ('%',#{name},'%') 
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="selectUmsPermissionListByPid" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	SELECT * FROM ums_permission WHERE pid = #{pid}
+  </select>
+  
+  <update id="updateUmsPermission" parameterType="com.tmall.model.UmsPermission">
+  	UPDATE ums_permission 
+  	<trim prefix="SET" suffixOverrides=",">
+  		<if test="name != null">
+  			name = #{name},
+  		</if>
+  		<if test="alias != null">
+  			alias = #{alias},
+  		</if>
+  		<if test="name != null">
+  			pid = #{pid},
+  		</if>
+  	</trim>
+  	WHERE id = #{id}
+  </update>
+  
+  <insert id="insertUmsPermission" parameterType="com.tmall.model.UmsPermission" useGeneratedKeys="true" keyProperty="id">
+	INSERT INTO ums_permission (
+		pid, alias, name, value, icon, type, uri, enabled, sort, create_time, creater
+      )
+    values (#{pid,jdbcType=BIGINT}, #{alias,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER} ,#{uri,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, 
+      #{sort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}
+      );
+  </insert>
+  
+  <delete id="deleteUmsPermissionById" parameterType="java.lang.Long">
+  	DELETE FROM ums_permission WHERE id = #{id,jdbcType=BIGINT}
+  </delete>
+  
 </mapper>

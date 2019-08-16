@@ -3,6 +3,7 @@ package com.tmall.model;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class UmsAdmin implements Serializable {
 
@@ -33,7 +34,7 @@ public class UmsAdmin implements Serializable {
 	private String telphone;
 
 	@ApiModelProperty(value = "帐号启用状态：0->禁用；1->启用")
-	private Integer status;
+	private Integer enabled;
 
 	@ApiModelProperty(value = "最后登录时间")
 	private Date loginTime;
@@ -42,13 +43,28 @@ public class UmsAdmin implements Serializable {
 	private Date createTime;
 
 	@ApiModelProperty(value = "修改时间")
-	private Date update_time;
+	private Date updateTime;
 
 	@ApiModelProperty(value = "创建人")
 	private String creater;
 
 	@ApiModelProperty(value = "修改人")
 	private String updater;
+	
+	@ApiModelProperty(value = "岗位id(外键)")
+	private Long umsJobId;
+	
+	@ApiModelProperty(value = "部门id(外键)")
+	private Long umsDeptmentId;
+	
+	@ApiModelProperty(value = "部门实体")
+	private UmsDepartment dept;
+	
+	@ApiModelProperty(value = "岗位实体")
+	private UmsJob job;
+	
+	@ApiModelProperty(value = "角色实体列表")
+	private List<UmsRole> roles;
 
 	public Long getId() {
 		return id;
@@ -114,12 +130,12 @@ public class UmsAdmin implements Serializable {
 		this.telphone = telphone;
 	}
 
-	public Integer getStatus() {
-		return status;
+	public Integer getEnabled() {
+		return enabled;
 	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setEnabled(Integer enabled) {
+		this.enabled = enabled;
 	}
 
 	public Date getLoginTime() {
@@ -138,12 +154,12 @@ public class UmsAdmin implements Serializable {
 		this.createTime = createTime;
 	}
 
-	public Date getUpdate_time() {
-		return update_time;
+	public Date getUpdateTime() {
+		return updateTime;
 	}
 
-	public void setUpdate_time(Date update_time) {
-		this.update_time = update_time;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 
 	public String getCreater() {
@@ -160,6 +176,46 @@ public class UmsAdmin implements Serializable {
 
 	public void setUpdater(String updater) {
 		this.updater = updater;
+	}
+
+	public Long getUmsJobId() {
+		return umsJobId;
+	}
+
+	public void setUmsJobId(Long umsJobId) {
+		this.umsJobId = umsJobId;
+	}
+
+	public Long getUmsDeptmentId() {
+		return umsDeptmentId;
+	}
+
+	public void setUmsDeptmentId(Long umsDeptmentId) {
+		this.umsDeptmentId = umsDeptmentId;
+	}
+
+	public UmsDepartment getDept() {
+		return dept;
+	}
+
+	public void setDept(UmsDepartment dept) {
+		this.dept = dept;
+	}
+
+	public UmsJob getJob() {
+		return job;
+	}
+
+	public void setJob(UmsJob job) {
+		this.job = job;
+	}
+
+	public List<UmsRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<UmsRole> roles) {
+		this.roles = roles;
 	}
 
 }

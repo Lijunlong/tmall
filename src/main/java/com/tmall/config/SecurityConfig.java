@@ -93,7 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			if (user != null) {
 				List<UmsPermission> permissionList;
 				try {
-					permissionList = permissionService.getUmsPermissionList(user.getId());
+					permissionList = permissionService.getUmsPermissionListByAdminId(user.getId());
 					return new AdminUserDetails(user, permissionList);
 				} catch (Exception e) {
 					logger.error("[异常]{}", e);

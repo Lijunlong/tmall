@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tmall.dao.UmsRoleMapper">
+	
+	<resultMap id="BaseResultMap" type="com.tmall.model.UmsRole">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="sort" jdbcType="INTEGER" property="sort" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	    <result column="creater" jdbcType="VARCHAR" property="creater" />
+	    <result column="updater" jdbcType="VARCHAR" property="updater" />
+	</resultMap>
+	
+	<select id="selectRoleListByAdminId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		SELECT role.* FROM ums_role role 
+			INNER JOIN 
+				ums_admin_role_relation admin_role_rel
+			ON 
+				role.id = admin_role_rel.role_id
+			WHERE admin_role_rel.admin_id = #{adminId}
+	</select>
+	
+	<select id="selectUmsRoleList" parameterType="com.tmall.model.UmsRole" resultMap="BaseResultMap">
+		SELECT * FROM ums_role
+	</select>
+</mapper>

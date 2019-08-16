@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tmall.dao.UmsMenuMapper">
+	
+	<resultMap id="BaseResultMap" type="com.tmall.model.UmsMenu">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="pid" jdbcType="BIGINT" property="pid" />
+		<result column="i_frame" jdbcType="INTEGER" property="iFrame" />
+		<result column="component" jdbcType="VARCHAR" property="component" />
+		<result column="icon" jdbcType="VARCHAR" property="icon" />
+		<result column="path" jdbcType="VARCHAR" property="path" />
+		<result column="enabled" jdbcType="INTEGER" property="enabled" />
+		<result column="sort" jdbcType="INTEGER" property="sort" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+	
+	<select id="selectUmsMenuListByPid" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		SELECT * FROM ums_menu WHERE pid = #{pid}
+	</select>
+	
+	<select id="selectUmsMenuListByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		SELECT menu.* FROM ums_menu menu 
+			WHERE menu.id in (
+				SELECT menu_id FROM ums_role_menu_relation WHERE role_id = #{roleId}
+			)
+	</select>
+	
+	<select id="selectUmsMenuLikeUmsMenu" parameterType="com.tmall.model.UmsMenu" resultMap="BaseResultMap">
+		SELECT * FROM ums_menu
+		<where>
+			<if test="name != null">
+				AND name LIKE CONCAT ('%',#{name},'%') 
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertUmsMenu" parameterType="com.tmall.model.UmsMenu" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO ums_menu (
+			name,pid,i_frame,component,icon,path,enabled,sort,create_time,hidden
+		) VALUES (
+			#{name},#{pid},#{iFrame},#{component},#{icon},#{path},#{enabled},#{sort},#{createTime},#{hidden}
+		)
+	</insert>
+	
+	<update id="updateUmsMenu" parameterType="com.tmall.model.UmsMenu">
+		UPDATE ums_menu 
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="name != null">
+				,name = #{name}
+			</if>
+			<if test="pid != null">
+				,pid = #{pid}
+			</if>
+			<if test="iFrame != null">
+				,i_frame = #{iFrame}
+			</if>
+			<if test="component != null">
+				,component = #{component}
+			</if>
+			<if test="icon != null">
+				,icon = #{icon}
+			</if>
+			<if test="path != null">
+				,path = #{path}
+			</if>
+			<if test="enabled != null">
+				,enabled = #{enabled}
+			</if>
+			<if test="sort != null">
+				,sort = #{sort}
+			</if>
+			<if test="hidden != null">
+				,hidden = #{hidden}
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteUmsMenuById" parameterType="java.lang.Long">
+		DELETE FROM ums_menu WHERE id = #{id}
+	</delete>
+	
+</mapper>

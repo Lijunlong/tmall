@@ -58,7 +58,7 @@ public class PmsProductCategoryController {
     @RequestMapping(value = "/update/showStatus", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult updateShowStatus(@RequestParam("id") Long id, @RequestParam("showStatus") Integer showStatus) {
-        int count = productCategoryService.updateShowStatus(id, showStatus);
+    	int count = productCategoryService.updateShowStatus(id, showStatus);
         if (count > 0) {
             return CommonResult.success(count);
         } else {

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tmall.dao.UmsJobMapper">
+	
+	<resultMap id="BaseResultMap" type="com.tmall.model.UmsJob">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="enabled" jdbcType="INTEGER" property="enabled" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="sort" jdbcType="INTEGER" property="sort" />
+		<result column="ums_department_id" jdbcType="BIGINT" property="umsDepartmentId" />
+	</resultMap>
+	
+	<select id="selectUmsJobById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		SELECT * FROM ums_job WHERE id = #{id}
+	</select>
+	
+	<select id="selectUmsJob" parameterType="com.tmall.model.UmsJob" resultMap="BaseResultMap">
+		SELECT * FROM ums_job 
+		<where>
+			<if test="name != null">
+				AND name = #{name}
+			</if>
+			<if test="enabled != null">
+				AND enabled = #{enabled}
+			</if>
+			<if test="umsDepartmentId != null">
+				AND ums_department_id = #{umsDepartmentId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectUmsJobLikeUmsJob" parameterType="com.tmall.model.UmsJob" resultMap="BaseResultMap">
+		SELECT * FROM ums_job 
+		<where>
+			<if test="name != null">
+				AND name LIKE CONCAT ('%',#{name},'%')
+			</if>
+			<if test="enabled != null">
+				AND enabled = #{enabled}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertUmsJob" parameterType="com.tmall.model.UmsJob">
+		INSERT INTO ums_job (
+			name,enabled,create_time,sort,ums_department_id
+		) VALUES (
+			#{name},#{enabled},#{createTime},#{sort},#{umsDepartmentId}
+		)
+	</insert>
+	
+	<update id="updateUmsJob" parameterType="com.tmall.model.UmsJob">
+		UPDATE ums_job
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="name != null">
+				,name = #{name}
+			</if>
+			<if test="enabled != null">
+				,enabled = #{enabled}
+			</if>
+			<if test="sort != null">
+				,sort = #{sort}
+			</if>
+			<if test="umsDepartmentId != null">
+				,ums_department_id = #{umsDepartmentId}
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteUmsJobById" parameterType="java.lang.Long">
+		DELETE FROM ums_job WHERE id = #{id}
+	</delete>
+	
+</mapper>

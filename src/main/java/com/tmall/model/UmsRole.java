@@ -3,6 +3,7 @@ package com.tmall.model;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class UmsRole implements Serializable {
 
@@ -34,7 +35,16 @@ public class UmsRole implements Serializable {
 
 	@ApiModelProperty(value = "修改人")
 	private String updater;
-
+	
+	@ApiModelProperty(value = "部门列表")
+	private List<UmsDepartment> depts;
+	
+	@ApiModelProperty(value = "菜单列表")
+	private List<UmsMenu> menus;
+	
+	@ApiModelProperty(value = "权限列表")
+	private List<UmsPermission> permissions;
+	
 	public Long getId() {
 		return id;
 	}
@@ -107,8 +117,28 @@ public class UmsRole implements Serializable {
 		this.updater = updater;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public List<UmsDepartment> getDepts() {
+		return depts;
+	}
+
+	public void setDepts(List<UmsDepartment> depts) {
+		this.depts = depts;
+	}
+
+	public List<UmsMenu> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(List<UmsMenu> menus) {
+		this.menus = menus;
+	}
+
+	public List<UmsPermission> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(List<UmsPermission> permissions) {
+		this.permissions = permissions;
 	}
 
 }

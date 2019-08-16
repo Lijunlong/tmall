@@ -13,13 +13,6 @@ public interface UmsAdminLoginService {
 	UmsAdmin getUserByUsername(String username);
 	
 	/**
-	 * 用户注册
-	 * @param userLoginParam 用户注册参数
-	 * @return User
-	 */
-	UmsAdmin register(UserLoginParam userLoginParam);
-	
-	/**
 	 * 用户登录后返回token
 	 * @param username 用户名
 	 * @param password 密码

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tmall.dao.UmsAdminMapper">
+  <resultMap id="BaseResultMap" type="com.tmall.model.UmsAdmin">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="telphone" jdbcType="VARCHAR" property="telphone" />
+    <result column="enabled" jdbcType="INTEGER" property="enabled" />
+    <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="updater" jdbcType="VARCHAR" property="updater" />
+    <result column="ums_job_id" jdbcType="BIGINT" property="umsJobId" />
+    <result column="ums_deptment_id" jdbcType="BIGINT" property="umsDeptmentId" />
+  </resultMap>
+  
+  <select id="selectUmsAdmin" parameterType="com.tmall.model.UmsAdmin" resultMap="BaseResultMap">
+    SELECT * FROM ums_admin
+    <where>
+   		<if test="umsJobId != null">
+    		AND ums_job_id = #{umsJobId} 
+    	</if>
+    	<if test="umsDeptmentId != null">
+    		AND ums_deptment_id = #{umsDeptmentId} 
+    	</if>
+    </where>
+  </select>
+  
+  <select id="selectUmsAdminLikeUmsAdmin" parameterType="java.lang.Object" resultMap="BaseResultMap">
+	SELECT * FROM ums_admin
+	<where>
+		<if test="umsAdmin.umsJobId != null">
+			AND ums_job_id = #{umsAdmin.umsJobId} 
+		</if>
+		<if test="deptIds != null and deptIds.size() > 0">
+			AND ums_deptment_id IN 
+			<foreach collection="deptIds" item="deptId" index="index" open="(" close=")" separator=",">
+				#{deptId}
+			</foreach>
+		</if>
+		<if test="umsAdmin.username != null">
+			AND username LIKE CONCAT('%',#{umsAdmin.username},'%') 
+		</if>
+		<if test="umsAdmin.email != null">
+			AND email LIKE CONCAT('%',#{umsAdmin.email},'%') 
+		</if>
+		<if test="umsAdmin.enabled != null">
+			AND enabled = #{umsAdmin.enabled} 
+		</if>
+	</where>
+  </select>
+  
+  <insert id="insertUmsAdmin" parameterType="com.tmall.model.UmsAdmin" useGeneratedKeys="true" keyProperty="id">
+	INSERT INTO ums_admin (username, password, icon, nick_name, email, note, telphone, enabled, 
+		create_time, creater, ums_job_id, ums_deptment_id
+      )
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR} ,#{telphone,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{umsJobId,jdbcType=BIGINT},
+      #{umsDeptmentId,jdbcType=BIGINT}
+      );
+  </insert>
+  
+  <update id="updateUmsAdmin" parameterType="com.tmall.model.UmsAdmin">
+  	UPDATE ums_admin 
+  	<trim prefix="SET" suffixOverrides=",">
+  		<if test="username != null">
+			username = #{username},
+		</if>
+		<if test="icon != null">
+			icon = #{icon},
+		</if>
+		<if test="nickName != null">
+			nick_name = #{nickName},
+		</if>
+		<if test="email != null">
+			email = #{email},
+		</if>
+		<if test="note != null">
+			note = #{note},
+		</if>
+		<if test="telphone != null">
+			telphone = #{telphone},
+		</if>
+		<if test="enabled != null">
+			enabled = #{enabled},
+		</if>
+		<if test="umsJobId != null">
+			ums_job_id = #{umsJobId},
+		</if>
+		<if test="umsDeptmentId != null">
+			ums_deptment_id = #{umsDeptmentId},
+		</if>
+		<if test="updater != null">
+			updater = #{updater},
+		</if>
+		<if test="updateTime != null">
+			update_time = #{updateTime},
+		</if>
+	</trim>
+  </update>
+  
+  <delete id="deleteUmsAdminById" parameterType="java.lang.Long">
+  	DELETE FROM ums_admin WHERE id = #{id}
+  </delete>
+  
+</mapper>

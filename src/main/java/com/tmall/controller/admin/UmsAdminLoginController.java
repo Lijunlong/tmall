@@ -37,17 +37,6 @@ public class UmsAdminLoginController {
 	@Value("${jwt.tokenHead}")
 	private String tokenHead;
 
-	@ApiOperation(value = "用户注册")
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	@ResponseBody
-	public Object register(@RequestBody UserLoginParam userLoginParam, BindingResult result) {
-		UmsAdmin umsAdmin = userService.register(userLoginParam);
-		if (umsAdmin == null) {
-			return CommonResult.failed();
-		}
-		return CommonResult.success(umsAdmin);
-	}
-
 	@ApiOperation(value = "登录以后返回token")
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody

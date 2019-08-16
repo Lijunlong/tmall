@@ -54,29 +54,6 @@ public class UmsAdminLoginServiceImpl implements UmsAdminLoginService {
 	}
 
 	@Override
-	public UmsAdmin register(UserLoginParam userLoginParam) {
-		if (StringUtils.isEmpty(userLoginParam)) {
-			return null;
-		}
-		// 查询是否有相同用户名的用户
-		List<UmsAdmin> umsAdminList = umsAdminLoginMapper.selectUserByUsername(userLoginParam.getUsername());
-		if (umsAdminList.size() > 0) {
-			return null;
-		}
-		UmsAdmin user = new UmsAdmin();
-		BeanUtils.copyProperties(userLoginParam, user);
-		user.setId(snowflake.nextId());
-		user.setCreateTime(DateUtil.getTimestamp());
-		user.setCreater(Constant.SYS_NAME);
-		user.setStatus(Constant.NORMAL);
-		// 将密码进行加密操作
-		String password = passwordEncoder.encode(user.getPassword());
-		user.setPassword(password);
-		umsAdminLoginMapper.insert(user);
-		return user;
-	}
-
-	@Override
 	public String login(String username, String password) {
 		String token = null;
         //密码需要客户端加密后传递

@@ -11,7 +11,7 @@
  Target Server Version : 80011
  File Encoding         : 65001
 
- Date: 08/08/2019 09:48:00
+ Date: 16/08/2019 17:56:57
 */
 
 SET NAMES utf8mb4;
@@ -95,16 +95,17 @@ CREATE TABLE `pms_product_category`  (
   `keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关键字',
   `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '描述',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品分类' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品分类' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_product_category
 -- ----------------------------
 INSERT INTO `pms_product_category` VALUES (5, 0, '测试11', 0, 1, 1, 'http://localhost:9092/tmall/upload/20190801161147baidu.png', '测试11测试11测试11', '测试11测试11测试11测试11测试11');
-INSERT INTO `pms_product_category` VALUES (6, 0, '测试22', 0, 0, 2, 'http://localhost:9092/tmall/upload/20190805150708裤子.jpg', '测试22测试22', '测试22测试22测试22测试22测试22测试22');
+INSERT INTO `pms_product_category` VALUES (6, 0, '测试22', 0, 1, 2, 'http://localhost:9092/tmall/upload/20190805150708裤子.jpg', '测试22测试22', '测试22测试22测试22测试22测试22测试22');
 INSERT INTO `pms_product_category` VALUES (7, 6, '测试33', 1, 0, 3, 'http://localhost:9092/tmall/upload/201908011615416.4加班.png', '测试33测试33', '测试33测试33测试33测试33测试33');
-INSERT INTO `pms_product_category` VALUES (8, 0, '111', 0, 1, 111, 'http://localhost:9092/tmall/upload/20190805105612baidu.png', '11', '1221');
-INSERT INTO `pms_product_category` VALUES (9, 0, '111111', 0, 0, 111, 'http://localhost:9092/tmall/upload/20190805150750souhu.jpg', '111', '1111');
+INSERT INTO `pms_product_category` VALUES (8, 0, '111', 0, 1, 111, 'http://localhost:9092/tmall/upload/20190812095232baidu.png', '11', '1221');
+INSERT INTO `pms_product_category` VALUES (9, 0, '111111', 0, 1, 111, 'http://localhost:9092/tmall/upload/20190805150750souhu.jpg', '111', '1111');
+INSERT INTO `pms_product_category` VALUES (10, 0, '11111', 0, 1, 111, 'http://localhost:9092/tmall/upload/20190814171601baidu.png', '11', '1111');
 
 -- ----------------------------
 -- Table structure for quartz_job
@@ -121,12 +122,12 @@ CREATE TABLE `quartz_job`  (
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '创建或更新日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of quartz_job
 -- ----------------------------
-INSERT INTO `quartz_job` VALUES (4, 'testTask', '0/5 * * * * ? ', 1, '测试', 'run', '', '测试', '2019-08-08 09:39:19');
+INSERT INTO `quartz_job` VALUES (4, 'testTask', '0/5 * * * * ? ', 1, '测试', 'run', '', '测试', '2019-08-16 04:02:20');
 
 -- ----------------------------
 -- Table structure for quartz_job_log
@@ -144,45 +145,162 @@ CREATE TABLE `quartz_job_log`  (
   `time` bigint(20) NULL DEFAULT NULL COMMENT '耗时（毫秒）',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 124 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 907 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of quartz_job_log
+-- ----------------------------
+INSERT INTO `quartz_job_log` VALUES (893, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 8, '2019-08-08 11:26:57');
+INSERT INTO `quartz_job_log` VALUES (894, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-08 11:26:58');
+INSERT INTO `quartz_job_log` VALUES (895, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 0, '2019-08-08 11:26:58');
+INSERT INTO `quartz_job_log` VALUES (896, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-08 11:26:59');
+INSERT INTO `quartz_job_log` VALUES (897, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 3, '2019-08-08 11:27:00');
+INSERT INTO `quartz_job_log` VALUES (898, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-08 12:00:09');
+INSERT INTO `quartz_job_log` VALUES (899, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-08 13:38:29');
+INSERT INTO `quartz_job_log` VALUES (900, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-08 13:38:36');
+INSERT INTO `quartz_job_log` VALUES (901, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 6, '2019-08-08 14:15:38');
+INSERT INTO `quartz_job_log` VALUES (902, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 23, '2019-08-08 14:15:50');
+INSERT INTO `quartz_job_log` VALUES (903, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 7, '2019-08-16 04:02:00');
+INSERT INTO `quartz_job_log` VALUES (904, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-16 04:02:05');
+INSERT INTO `quartz_job_log` VALUES (905, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 0, '2019-08-16 04:02:10');
+INSERT INTO `quartz_job_log` VALUES (906, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-16 04:02:15');
 
 -- ----------------------------
 -- Table structure for ums_admin
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_admin`;
 CREATE TABLE `ums_admin`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
-  `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
-  `icon` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
-  `nick_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '昵称',
-  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
+  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
+  `nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '昵称',
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
   `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注信息',
-  `telphone` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话号码',
-  `status` int(1) NULL DEFAULT 1 COMMENT '帐号启用状态：0->禁用；1->启用',
+  `telphone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话号码',
+  `enabled` int(1) NULL DEFAULT NULL COMMENT '帐号启用状态：0->禁用；1->启用',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '最后登录时间',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
   `creater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `updater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
+  `updater` varchar(0) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
+  `ums_job_id` bigint(20) NULL DEFAULT NULL COMMENT '岗位id',
+  `ums_deptment_id` bigint(20) NULL DEFAULT NULL COMMENT '部门id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1123073311669096449 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_admin
 -- ----------------------------
-INSERT INTO `ums_admin` VALUES (1123073311669096448, 'admin', '$2a$10$4XqjamdaivwxoH6ovutK4OU15n6r.xE/JJ8d5jGDtAhJMVbRGI6be', 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3357786243,3135716437&fm=26&gp=0.jpg', '系统管理员', '88888888@qq.com', NULL, '88888888', 1, '2019-08-08 09:33:10', '2019-07-26 15:53:07', NULL, '系统管理员', NULL);
+INSERT INTO `ums_admin` VALUES (1, 'admin', '$2a$10$4XqjamdaivwxoH6ovutK4OU15n6r.xE/JJ8d5jGDtAhJMVbRGI6be', 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3357786243,3135716437&fm=26&gp=0.jpg', '系统管理员', '88888888@qq.com', NULL, '13520962818', 1, '2019-08-16 09:03:30', '2019-07-26 15:53:07', NULL, '系统管理员', NULL, 4, 2);
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_admin_role_relation`;
 CREATE TABLE `ums_admin_role_relation`  (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `admin_id` bigint(20) NULL DEFAULT NULL,
   `role_id` bigint(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户和角色关系表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户和角色关系表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ums_admin_role_relation
+-- ----------------------------
+INSERT INTO `ums_admin_role_relation` VALUES (41, 1, 1);
+INSERT INTO `ums_admin_role_relation` VALUES (42, 1, 2);
+
+-- ----------------------------
+-- Table structure for ums_department
+-- ----------------------------
+DROP TABLE IF EXISTS `ums_department`;
+CREATE TABLE `ums_department`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '部门名称',
+  `pid` bigint(20) NULL DEFAULT NULL COMMENT '父id',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `enabled` int(255) NULL DEFAULT NULL COMMENT '状态，1正常；0停用',
+  `sort` int(255) NULL DEFAULT NULL COMMENT '排序号',
+  `label` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'label',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ums_department
+-- ----------------------------
+INSERT INTO `ums_department` VALUES (1, 'eladmin', 0, '2019-03-25 09:14:05', 1, 1, 'eladmin');
+INSERT INTO `ums_department` VALUES (2, '研发部', 7, '2019-03-25 09:15:32', 1, 1, '研发部');
+INSERT INTO `ums_department` VALUES (5, '运维部', 7, '2019-03-25 09:20:44', 1, 1, '运维部');
+INSERT INTO `ums_department` VALUES (6, '测试部', 8, '2019-03-25 09:52:18', 1, 1, '测试部');
+INSERT INTO `ums_department` VALUES (7, '华南分部', 1, '2019-03-25 11:04:50', 1, 1, '华南分部');
+INSERT INTO `ums_department` VALUES (8, '华北分部', 1, '2019-03-25 11:04:53', 1, 1, '华北分部');
+INSERT INTO `ums_department` VALUES (9, '财务部', 7, '2019-03-25 11:05:34', 1, 1, '财务部');
+INSERT INTO `ums_department` VALUES (10, '行政部', 8, '2019-03-25 11:05:58', 1, 1, '行政部');
+INSERT INTO `ums_department` VALUES (11, '人事部', 8, '2019-03-25 11:07:58', 1, 1, '人事部');
+INSERT INTO `ums_department` VALUES (12, '市场部', 7, '2019-03-25 11:10:24', 1, 1, '市场部');
+
+-- ----------------------------
+-- Table structure for ums_job
+-- ----------------------------
+DROP TABLE IF EXISTS `ums_job`;
+CREATE TABLE `ums_job`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '工作名称',
+  `enabled` int(255) NULL DEFAULT NULL COMMENT '状态，1正常；0停用',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `sort` int(255) NULL DEFAULT NULL COMMENT '排序字段',
+  `ums_department_id` bigint(20) NULL DEFAULT NULL COMMENT '部门id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ums_job
+-- ----------------------------
+INSERT INTO `ums_job` VALUES (1, '董事长秘书', 1, '2019-03-29 14:01:30', 2, 1);
+INSERT INTO `ums_job` VALUES (2, '人事专员', 0, '2019-03-29 14:52:28', 1, 11);
+INSERT INTO `ums_job` VALUES (3, '产品经理', 1, '2019-03-29 14:55:51', 4, 2);
+INSERT INTO `ums_job` VALUES (4, '全栈开发', 1, '2019-03-31 13:39:30', 6, 2);
+INSERT INTO `ums_job` VALUES (5, '软件测试', 1, '2019-03-31 13:39:43', 5, 2);
+INSERT INTO `ums_job` VALUES (6, '董事长', 1, '2019-03-31 14:58:15', 1, 1);
+
+-- ----------------------------
+-- Table structure for ums_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `ums_menu`;
+CREATE TABLE `ums_menu`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '菜单名称',
+  `pid` bigint(20) NULL DEFAULT NULL COMMENT '上级菜单ID',
+  `i_frame` int(255) NULL DEFAULT 1 COMMENT '是否外链，1正常；0外链',
+  `component` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '组件',
+  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图标',
+  `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '链接地址',
+  `enabled` int(255) NULL DEFAULT 1 COMMENT '状态，1正常；0停用',
+  `sort` int(255) NULL DEFAULT NULL COMMENT '排序字段',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
+  `hidden` int(255) NULL DEFAULT 1 COMMENT '是否隐藏，1显示，0隐藏',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ums_menu
+-- ----------------------------
+INSERT INTO `ums_menu` VALUES (1, '商品', 0, 1, NULL, 'icon', 'pms', 1, 1, '2019-08-09 13:01:11', 1);
+INSERT INTO `ums_menu` VALUES (2, '商品列表', 1, 1, 'pms/product/index', 'index', 'product', 1, 2, '2019-08-09 13:04:05', 1);
+INSERT INTO `ums_menu` VALUES (3, '添加商品', 1, 1, 'pms/product/add', 'icon', 'addProduct', 1, 3, '2019-08-09 13:04:50', 1);
+INSERT INTO `ums_menu` VALUES (4, '商品分类', 1, 1, 'pms/productCate', 'icon', 'productCate', 1, 4, '2019-08-09 13:05:39', 1);
+INSERT INTO `ums_menu` VALUES (5, '系统工具', 0, 1, '', 'icon', 'sys-tools', 1, 1, '2019-08-09 13:06:49', 1);
+INSERT INTO `ums_menu` VALUES (6, '定时任务', 5, 1, 'tools/timing/index', 'icon', 'timing', 1, 2, '2019-08-09 13:07:40', 1);
+INSERT INTO `ums_menu` VALUES (7, '项目地址', 0, 0, '', 'icon', 'https://github.com', 1, 1, '2019-08-09 13:08:55', 0);
+INSERT INTO `ums_menu` VALUES (8, '添加商品分类', 1, 1, 'pms/productCate/add', 'icon', 'addProductCate', 1, 1, '2019-08-11 21:49:56', 0);
+INSERT INTO `ums_menu` VALUES (9, '修改商品分类', 1, 1, 'pms/productCate/update', 'icon', 'updateProductCate', 0, 1, '2019-08-11 21:50:26', 0);
+INSERT INTO `ums_menu` VALUES (10, '系统管理', 0, 1, NULL, 'system', 'system', 1, 1, '2019-08-11 22:17:02', 1);
+INSERT INTO `ums_menu` VALUES (11, '用户管理', 10, 1, 'system/user/index', 'user', 'user', 1, 1, '2019-08-11 22:22:48', 1);
+INSERT INTO `ums_menu` VALUES (12, '权限管理', 10, 1, 'system/permission/index', 'permission', 'permission', 1, 1, '2019-08-15 11:14:50', 1);
+INSERT INTO `ums_menu` VALUES (13, '菜单管理', 10, 1, 'system/menu/index', 'menu', 'menu', 1, NULL, '2019-08-15 15:32:28', 1);
+INSERT INTO `ums_menu` VALUES (19, '部门管理', 10, 1, 'system/dept/index', 'icon', 'dept', 1, 1, '2019-08-16 10:14:42', 1);
+INSERT INTO `ums_menu` VALUES (20, '岗位管理', 10, 1, 'system/job/index', 'icon', 'job', 1, 1, '2019-08-16 15:35:36', 1);
 
 -- ----------------------------
 -- Table structure for ums_permission
@@ -191,19 +309,30 @@ DROP TABLE IF EXISTS `ums_permission`;
 CREATE TABLE `ums_permission`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `pid` bigint(20) NULL DEFAULT NULL COMMENT '父级权限id',
+  `alias` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '别名',
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
   `value` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '权限值',
   `icon` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图标',
   `type` int(1) NULL DEFAULT NULL COMMENT '权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）',
   `uri` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '前端资源路径',
-  `status` int(1) NULL DEFAULT NULL COMMENT '启用状态；0->禁用；1->启用',
+  `enabled` int(1) NULL DEFAULT NULL COMMENT '启用状态；0->禁用；1->启用',
   `sort` int(11) NULL DEFAULT NULL COMMENT '排序',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
   `creater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
   `updater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户权限表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户权限表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ums_permission
+-- ----------------------------
+INSERT INTO `ums_permission` VALUES (1, 0, '超级管理员', 'ADMIN', NULL, NULL, NULL, NULL, NULL, 1, '2019-08-15 11:23:13', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (2, 0, '用户管理', 'USER_ALL', NULL, NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:06', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (3, 2, '用户查询', 'USER_SELECT', NULL, NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:27', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (4, 2, '用户创建', 'USER_CREATE', NULL, NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (5, 2, '用户编辑', 'USER_EDIT', NULL, NULL, NULL, NULL, NULL, 1, '2019-08-15 11:25:08', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (6, 2, '用户删除', 'USER_DELETE', NULL, NULL, NULL, NULL, NULL, 1, '2019-08-15 11:25:25', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ums_role
@@ -214,13 +343,65 @@ CREATE TABLE `ums_role`  (
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
   `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
   `status` int(1) NULL DEFAULT 1 COMMENT '启用状态：0->禁用；1->启用',
-  `sort` int(11) NULL DEFAULT 0,
+  `sort` int(11) NULL DEFAULT 0 COMMENT '排序号',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime(0) NULL DEFAULT NULL,
-  `creater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `updater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
+  `creater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `updater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户角色表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户角色表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ums_role
+-- ----------------------------
+INSERT INTO `ums_role` VALUES (1, '超级管理员', '超级管理员', 1, 0, '2019-08-09 12:54:25', NULL, 'SYS', NULL);
+INSERT INTO `ums_role` VALUES (2, '普通用户', '普通用户', 1, 0, '2019-08-09 12:54:51', NULL, 'SYS', NULL);
+
+-- ----------------------------
+-- Table structure for ums_role_department_relation
+-- ----------------------------
+DROP TABLE IF EXISTS `ums_role_department_relation`;
+CREATE TABLE `ums_role_department_relation`  (
+  `id` bigint(20) NOT NULL COMMENT '主键',
+  `role_id` bigint(20) NULL DEFAULT NULL COMMENT '角色id',
+  `department_id` bigint(20) NULL DEFAULT NULL COMMENT '部门id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ums_role_menu_relation
+-- ----------------------------
+DROP TABLE IF EXISTS `ums_role_menu_relation`;
+CREATE TABLE `ums_role_menu_relation`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `role_id` bigint(20) NULL DEFAULT NULL COMMENT '角色id',
+  `menu_id` bigint(20) NULL DEFAULT NULL COMMENT '菜单id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ums_role_menu_relation
+-- ----------------------------
+INSERT INTO `ums_role_menu_relation` VALUES (1, 1, 1);
+INSERT INTO `ums_role_menu_relation` VALUES (2, 1, 2);
+INSERT INTO `ums_role_menu_relation` VALUES (3, 1, 3);
+INSERT INTO `ums_role_menu_relation` VALUES (4, 1, 4);
+INSERT INTO `ums_role_menu_relation` VALUES (5, 1, 5);
+INSERT INTO `ums_role_menu_relation` VALUES (6, 1, 6);
+INSERT INTO `ums_role_menu_relation` VALUES (7, 1, 7);
+INSERT INTO `ums_role_menu_relation` VALUES (8, 2, 1);
+INSERT INTO `ums_role_menu_relation` VALUES (9, 2, 2);
+INSERT INTO `ums_role_menu_relation` VALUES (10, 2, 3);
+INSERT INTO `ums_role_menu_relation` VALUES (11, 2, 4);
+INSERT INTO `ums_role_menu_relation` VALUES (12, 2, 7);
+INSERT INTO `ums_role_menu_relation` VALUES (13, 1, 8);
+INSERT INTO `ums_role_menu_relation` VALUES (14, 1, 9);
+INSERT INTO `ums_role_menu_relation` VALUES (15, 1, 10);
+INSERT INTO `ums_role_menu_relation` VALUES (16, 1, 11);
+INSERT INTO `ums_role_menu_relation` VALUES (17, 1, 12);
+INSERT INTO `ums_role_menu_relation` VALUES (18, 1, 13);
+INSERT INTO `ums_role_menu_relation` VALUES (19, 1, 19);
+INSERT INTO `ums_role_menu_relation` VALUES (20, 1, 20);
 
 -- ----------------------------
 -- Table structure for ums_role_permission_relation

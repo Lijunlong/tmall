@@ -1,13 +1,14 @@
 package com.tmall.dao;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.tmall.model.UmsAdmin;
 
 public interface UmsAdminLoginMapper {
 	
-    int insert(UmsAdmin umsAdmin);
-
-    List<UmsAdmin> selectUserByUsername(String username);
+    List<UmsAdmin> selectUserByUsername(@Param("username")String username);
     
 	int updateLoginTimeByUsername(UmsAdmin user);
 
