@@ -11,7 +11,7 @@
  Target Server Version : 80011
  File Encoding         : 65001
 
- Date: 21/08/2019 10:49:33
+ Date: 21/08/2019 17:37:33
 */
 
 SET NAMES utf8mb4;
@@ -127,7 +127,7 @@ CREATE TABLE `quartz_job`  (
 -- ----------------------------
 -- Records of quartz_job
 -- ----------------------------
-INSERT INTO `quartz_job` VALUES (4, 'testTask', '0/5 * * * * ? ', 1, '测试', 'run', '', '测试', '2019-08-16 10:08:09');
+INSERT INTO `quartz_job` VALUES (4, 'testTask', '0/5 * * * * ? ', 1, '测试', 'run', '', '测试', '2019-08-21 02:53:04');
 
 -- ----------------------------
 -- Table structure for quartz_job_log
@@ -166,6 +166,8 @@ INSERT INTO `quartz_job_log` VALUES (905, '测试', 'testTask', 'run', '', '0/5 
 INSERT INTO `quartz_job_log` VALUES (906, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-16 04:02:15');
 INSERT INTO `quartz_job_log` VALUES (907, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 19, '2019-08-16 10:08:07');
 INSERT INTO `quartz_job_log` VALUES (908, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-16 10:08:08');
+INSERT INTO `quartz_job_log` VALUES (909, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 7, '2019-08-21 02:53:01');
+INSERT INTO `quartz_job_log` VALUES (910, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-21 02:53:02');
 
 -- ----------------------------
 -- Table structure for ums_admin
@@ -185,7 +187,7 @@ CREATE TABLE `ums_admin`  (
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
   `creater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `updater` varchar(0) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
+  `updater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
   `ums_job_id` bigint(20) NULL DEFAULT NULL COMMENT '岗位id',
   `ums_deptment_id` bigint(20) NULL DEFAULT NULL COMMENT '部门id',
   PRIMARY KEY (`id`) USING BTREE
@@ -194,7 +196,8 @@ CREATE TABLE `ums_admin`  (
 -- ----------------------------
 -- Records of ums_admin
 -- ----------------------------
-INSERT INTO `ums_admin` VALUES (1, 'admin', '$2a$10$4XqjamdaivwxoH6ovutK4OU15n6r.xE/JJ8d5jGDtAhJMVbRGI6be', 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3357786243,3135716437&fm=26&gp=0.jpg', '系统管理员', '88888888@qq.com', NULL, '13520962818', 1, '2019-08-20 02:44:01', '2019-07-26 15:53:07', NULL, '系统管理员', NULL, 4, 2);
+INSERT INTO `ums_admin` VALUES (1, 'admin', '$2a$10$4XqjamdaivwxoH6ovutK4OU15n6r.xE/JJ8d5jGDtAhJMVbRGI6be', 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3357786243,3135716437&fm=26&gp=0.jpg', '系统管理员', '8888888@qq.com', NULL, '15825898888', 1, '2019-08-21 06:51:21', '2019-07-26 15:53:07', '2019-08-21 08:29:09', '系统管理员', 'admin', 1, 1);
+INSERT INTO `ums_admin` VALUES (7, 'test', '$2a$10$BzwTgS537hCeI2iXdGDnOObLq9LrUF39Vc0JgnoEYmAXrAYleppPC', NULL, '普通管理员', '8888888@qq.com', NULL, '13520962818', 1, '2019-08-21 06:51:09', '2019-08-21 05:10:14', '2019-08-21 08:31:51', NULL, 'admin', 5, 2);
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation
@@ -210,8 +213,8 @@ CREATE TABLE `ums_admin_role_relation`  (
 -- ----------------------------
 -- Records of ums_admin_role_relation
 -- ----------------------------
-INSERT INTO `ums_admin_role_relation` VALUES (41, 1, 1);
-INSERT INTO `ums_admin_role_relation` VALUES (42, 1, 2);
+INSERT INTO `ums_admin_role_relation` VALUES (64, 1, 1);
+INSERT INTO `ums_admin_role_relation` VALUES (68, 7, 8);
 
 -- ----------------------------
 -- Table structure for ums_department
@@ -231,7 +234,7 @@ CREATE TABLE `ums_department`  (
 -- ----------------------------
 -- Records of ums_department
 -- ----------------------------
-INSERT INTO `ums_department` VALUES (1, 'eladmin', 0, '2019-03-25 09:14:05', 1, 1, 'eladmin');
+INSERT INTO `ums_department` VALUES (1, 'tmall', 0, '2019-03-25 09:14:05', 1, 1, 'tmall');
 INSERT INTO `ums_department` VALUES (2, '研发部', 7, '2019-03-25 09:15:32', 1, 1, '研发部');
 INSERT INTO `ums_department` VALUES (5, '运维部', 7, '2019-03-25 09:20:44', 1, 1, '运维部');
 INSERT INTO `ums_department` VALUES (6, '测试部', 8, '2019-03-25 09:52:18', 1, 1, '测试部');
@@ -288,22 +291,22 @@ CREATE TABLE `ums_menu`  (
 -- ----------------------------
 -- Records of ums_menu
 -- ----------------------------
-INSERT INTO `ums_menu` VALUES (1, '商品', 0, 1, NULL, 'icon', 'pms', 1, 1, '2019-08-09 13:01:11', 1);
+INSERT INTO `ums_menu` VALUES (1, '商品', 0, 1, NULL, 'icon', 'pms', 1, 2, '2019-08-09 13:01:11', 1);
 INSERT INTO `ums_menu` VALUES (2, '商品列表', 1, 1, 'pms/product/index', 'index', 'product', 1, 2, '2019-08-09 13:04:05', 1);
 INSERT INTO `ums_menu` VALUES (3, '添加商品', 1, 1, 'pms/product/add', 'icon', 'addProduct', 1, 3, '2019-08-09 13:04:50', 1);
 INSERT INTO `ums_menu` VALUES (4, '商品分类', 1, 1, 'pms/productCate', 'icon', 'productCate', 1, 4, '2019-08-09 13:05:39', 1);
-INSERT INTO `ums_menu` VALUES (5, '系统工具', 0, 1, '', 'icon', 'sys-tools', 1, 1, '2019-08-09 13:06:49', 1);
+INSERT INTO `ums_menu` VALUES (5, '系统工具', 0, 1, '', 'icon', 'sys-tools', 1, 3, '2019-08-09 13:06:49', 1);
 INSERT INTO `ums_menu` VALUES (6, '定时任务', 5, 1, 'tools/timing/index', 'icon', 'timing', 1, 2, '2019-08-09 13:07:40', 1);
-INSERT INTO `ums_menu` VALUES (7, '项目地址', 0, 0, '', 'icon', 'https://github.com', 1, 1, '2019-08-09 13:08:55', 0);
+INSERT INTO `ums_menu` VALUES (7, '项目地址', 0, 0, '', 'icon', 'https://github.com', 1, 1, '2019-08-09 13:08:55', 1);
 INSERT INTO `ums_menu` VALUES (8, '添加商品分类', 1, 1, 'pms/productCate/add', 'icon', 'addProductCate', 1, 1, '2019-08-11 21:49:56', 0);
-INSERT INTO `ums_menu` VALUES (9, '修改商品分类', 1, 1, 'pms/productCate/update', 'icon', 'updateProductCate', 0, 1, '2019-08-11 21:50:26', 0);
-INSERT INTO `ums_menu` VALUES (10, '系统管理', 0, 1, NULL, 'system', 'system', 1, 1, '2019-08-11 22:17:02', 1);
-INSERT INTO `ums_menu` VALUES (11, '用户管理', 10, 1, 'system/user/index', 'user', 'user', 1, 1, '2019-08-11 22:22:48', 1);
-INSERT INTO `ums_menu` VALUES (12, '权限管理', 10, 1, 'system/permission/index', 'permission', 'permission', 1, 1, '2019-08-15 11:14:50', 1);
-INSERT INTO `ums_menu` VALUES (13, '菜单管理', 10, 1, 'system/menu/index', 'menu', 'menu', 1, NULL, '2019-08-15 15:32:28', 1);
-INSERT INTO `ums_menu` VALUES (19, '部门管理', 10, 1, 'system/dept/index', 'icon', 'dept', 1, 1, '2019-08-16 10:14:42', 1);
-INSERT INTO `ums_menu` VALUES (20, '岗位管理', 10, 1, 'system/job/index', 'icon', 'job', 1, 1, '2019-08-16 15:35:36', 1);
-INSERT INTO `ums_menu` VALUES (24, '角色管理', 10, 1, 'system/role/index', 'icon', 'role', 1, 1, '2019-08-19 08:15:40', 1);
+INSERT INTO `ums_menu` VALUES (9, '修改商品分类', 1, 1, 'pms/productCate/update', 'icon', 'updateProductCate', 1, 1, '2019-08-11 21:50:26', 0);
+INSERT INTO `ums_menu` VALUES (10, '系统管理', 0, 1, NULL, 'system', 'system', 1, 4, '2019-08-11 22:17:02', 1);
+INSERT INTO `ums_menu` VALUES (11, '用户管理', 10, 1, 'system/user/index', 'user', 'user', 1, 2, '2019-08-11 22:22:48', 1);
+INSERT INTO `ums_menu` VALUES (12, '权限管理', 10, 1, 'system/permission/index', 'permission', 'permission', 1, 4, '2019-08-15 11:14:50', 1);
+INSERT INTO `ums_menu` VALUES (13, '菜单管理', 10, 1, 'system/menu/index', 'menu', 'menu', 1, 5, '2019-08-15 15:32:28', 1);
+INSERT INTO `ums_menu` VALUES (19, '部门管理', 10, 1, 'system/dept/index', 'icon', 'dept', 1, 6, '2019-08-16 10:14:42', 1);
+INSERT INTO `ums_menu` VALUES (20, '岗位管理', 10, 1, 'system/job/index', 'icon', 'job', 1, 7, '2019-08-16 15:35:36', 1);
+INSERT INTO `ums_menu` VALUES (24, '角色管理', 10, 1, 'system/role/index', 'icon', 'role', 1, 3, '2019-08-19 08:15:40', 1);
 
 -- ----------------------------
 -- Table structure for ums_permission
@@ -318,7 +321,6 @@ CREATE TABLE `ums_permission`  (
   `icon` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图标',
   `type` int(1) NULL DEFAULT NULL COMMENT '权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）',
   `uri` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '前端资源路径',
-  `enabled` int(1) NULL DEFAULT NULL COMMENT '启用状态；0->禁用；1->启用',
   `sort` int(11) NULL DEFAULT NULL COMMENT '排序',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
@@ -330,12 +332,37 @@ CREATE TABLE `ums_permission`  (
 -- ----------------------------
 -- Records of ums_permission
 -- ----------------------------
-INSERT INTO `ums_permission` VALUES (1, 0, '超级管理员', 'ADMIN', NULL, NULL, NULL, NULL, NULL, 1, '2019-08-15 11:23:13', NULL, NULL, NULL);
-INSERT INTO `ums_permission` VALUES (2, 0, '用户管理', 'USER_ALL', NULL, NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:06', NULL, NULL, NULL);
-INSERT INTO `ums_permission` VALUES (3, 2, '用户查询', 'USER_SELECT', NULL, NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:27', NULL, NULL, NULL);
-INSERT INTO `ums_permission` VALUES (4, 2, '用户创建', 'USER_CREATE', NULL, NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
-INSERT INTO `ums_permission` VALUES (5, 2, '用户编辑', 'USER_EDIT', NULL, NULL, NULL, NULL, NULL, 1, '2019-08-15 11:25:08', NULL, NULL, NULL);
-INSERT INTO `ums_permission` VALUES (6, 2, '用户删除', 'USER_DELETE', NULL, NULL, NULL, NULL, NULL, 1, '2019-08-15 11:25:25', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (1, 0, '超级管理员', 'ADMIN', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (2, 0, '用户管理', 'USER_ALL', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', '2019-08-21 09:11:12', NULL, 'admin');
+INSERT INTO `ums_permission` VALUES (3, 2, '用户查询', 'USER_SELECT', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (4, 2, '用户创建', 'USER_CREATE', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (5, 2, '用户编辑', 'USER_EDIT', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (6, 2, '用户删除', 'USER_DELETE', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (22, 0, '角色管理', 'ROLES_ALL', NULL, NULL, NULL, NULL, 2, '2019-08-15 11:24:48', '2019-08-21 09:11:19', NULL, 'admin');
+INSERT INTO `ums_permission` VALUES (23, 22, '角色查询', 'ROLES_SELECT', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (24, 22, '角色创建', 'ROLES_CREATE', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (25, 22, '角色编辑', 'ROLES_EDIT', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (26, 22, '角色删除', 'ROLES_DELETE', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (27, 0, '权限管理', 'PERMISSION_ALL', NULL, NULL, NULL, NULL, 3, '2019-08-15 11:24:48', '2019-08-21 09:11:25', NULL, 'admin');
+INSERT INTO `ums_permission` VALUES (28, 27, '权限查询', 'PERMISSION_SELECT', NULL, NULL, NULL, NULL, 2, '2019-08-15 11:24:48', '2019-08-21 09:06:47', NULL, 'admin');
+INSERT INTO `ums_permission` VALUES (29, 27, '权限创建', 'PERMISSION_CREATE', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (30, 27, '权限编辑', 'PERMISSION_EDIT', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (31, 27, '权限删除', 'PERMISSION_DELETE', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (32, 0, '菜单管理', 'MENU_ALL', NULL, NULL, NULL, NULL, 4, '2019-08-15 11:24:48', '2019-08-21 09:11:47', NULL, 'admin');
+INSERT INTO `ums_permission` VALUES (33, 32, '菜单查询', 'MENU_SELECT', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (34, 32, '菜单创建', 'MENU_CREATE', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (35, 32, '菜单编辑', 'MENU_EDIT', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (36, 32, '菜单删除', 'MENU_DELETE', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (37, 0, '部门管理', 'DEPT_ALL', NULL, NULL, NULL, NULL, 5, '2019-08-15 11:24:48', '2019-08-21 09:11:56', NULL, 'admin');
+INSERT INTO `ums_permission` VALUES (38, 37, '部门查询', 'DEPT_SELECT', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (39, 37, '部门创建', 'DEPT_CREATE', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (40, 37, '部门编辑', 'DEPT_EDIT', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (41, 37, '部门删除', 'DEPT_DELETE', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (42, 0, '岗位管理', 'USERJOB_ALL', NULL, NULL, NULL, NULL, 6, '2019-08-15 11:24:48', '2019-08-21 09:12:02', NULL, 'admin');
+INSERT INTO `ums_permission` VALUES (43, 42, '岗位查询', 'USERJOB_SELECT', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (44, 42, '岗位创建', 'USERJOB_CREATE', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (45, 42, '岗位编辑', 'USERJOB_EDIT', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
+INSERT INTO `ums_permission` VALUES (46, 42, '岗位删除', 'USERJOB_DELETE', NULL, NULL, NULL, NULL, 1, '2019-08-15 11:24:48', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ums_role
@@ -360,7 +387,7 @@ CREATE TABLE `ums_role`  (
 -- Records of ums_role
 -- ----------------------------
 INSERT INTO `ums_role` VALUES (1, '超级管理员', '超级管理员', 1, 0, '2019-08-09 12:54:25', '2019-08-21 02:04:07', 'SYS', NULL, '自定义', 1);
-INSERT INTO `ums_role` VALUES (2, '普通用户', '普通用户', 1, 0, '2019-08-09 12:54:51', '2019-08-21 02:03:43', 'SYS', NULL, '自定义', 2);
+INSERT INTO `ums_role` VALUES (8, '普通管理员', '普通管理员', 1, 0, '2019-08-21 02:57:07', NULL, NULL, NULL, '自定义', 3);
 
 -- ----------------------------
 -- Table structure for ums_role_department_relation
@@ -376,8 +403,8 @@ CREATE TABLE `ums_role_department_relation`  (
 -- ----------------------------
 -- Records of ums_role_department_relation
 -- ----------------------------
-INSERT INTO `ums_role_department_relation` VALUES (5, 2, 6);
 INSERT INTO `ums_role_department_relation` VALUES (6, 1, 1);
+INSERT INTO `ums_role_department_relation` VALUES (8, 8, 1);
 
 -- ----------------------------
 -- Table structure for ums_role_menu_relation
@@ -409,30 +436,6 @@ INSERT INTO `ums_role_menu_relation` VALUES (18, 1, 13);
 INSERT INTO `ums_role_menu_relation` VALUES (19, 1, 19);
 INSERT INTO `ums_role_menu_relation` VALUES (20, 1, 20);
 INSERT INTO `ums_role_menu_relation` VALUES (21, 1, 24);
-INSERT INTO `ums_role_menu_relation` VALUES (85, 2, 7);
-INSERT INTO `ums_role_menu_relation` VALUES (86, 2, 10);
-INSERT INTO `ums_role_menu_relation` VALUES (87, 2, 11);
-INSERT INTO `ums_role_menu_relation` VALUES (88, 2, 12);
-INSERT INTO `ums_role_menu_relation` VALUES (89, 2, 13);
-INSERT INTO `ums_role_menu_relation` VALUES (90, 2, 19);
-INSERT INTO `ums_role_menu_relation` VALUES (91, 2, 20);
-INSERT INTO `ums_role_menu_relation` VALUES (92, 2, 24);
-INSERT INTO `ums_role_menu_relation` VALUES (99, 3, 1);
-INSERT INTO `ums_role_menu_relation` VALUES (100, 3, 2);
-INSERT INTO `ums_role_menu_relation` VALUES (101, 3, 3);
-INSERT INTO `ums_role_menu_relation` VALUES (102, 3, 4);
-INSERT INTO `ums_role_menu_relation` VALUES (103, 3, 8);
-INSERT INTO `ums_role_menu_relation` VALUES (104, 3, 9);
-INSERT INTO `ums_role_menu_relation` VALUES (105, 3, 5);
-INSERT INTO `ums_role_menu_relation` VALUES (106, 3, 6);
-INSERT INTO `ums_role_menu_relation` VALUES (107, 3, 7);
-INSERT INTO `ums_role_menu_relation` VALUES (108, 3, 10);
-INSERT INTO `ums_role_menu_relation` VALUES (109, 3, 11);
-INSERT INTO `ums_role_menu_relation` VALUES (110, 3, 12);
-INSERT INTO `ums_role_menu_relation` VALUES (111, 3, 13);
-INSERT INTO `ums_role_menu_relation` VALUES (112, 3, 19);
-INSERT INTO `ums_role_menu_relation` VALUES (113, 3, 20);
-INSERT INTO `ums_role_menu_relation` VALUES (114, 3, 24);
 
 -- ----------------------------
 -- Table structure for ums_role_permission_relation
@@ -448,8 +451,36 @@ CREATE TABLE `ums_role_permission_relation`  (
 -- ----------------------------
 -- Records of ums_role_permission_relation
 -- ----------------------------
-INSERT INTO `ums_role_permission_relation` VALUES (80, 2, 4);
-INSERT INTO `ums_role_permission_relation` VALUES (81, 2, 5);
-INSERT INTO `ums_role_permission_relation` VALUES (82, 2, 6);
+INSERT INTO `ums_role_permission_relation` VALUES (225, 1, 1);
+INSERT INTO `ums_role_permission_relation` VALUES (226, 1, 2);
+INSERT INTO `ums_role_permission_relation` VALUES (227, 1, 3);
+INSERT INTO `ums_role_permission_relation` VALUES (228, 1, 4);
+INSERT INTO `ums_role_permission_relation` VALUES (229, 1, 5);
+INSERT INTO `ums_role_permission_relation` VALUES (230, 1, 6);
+INSERT INTO `ums_role_permission_relation` VALUES (231, 1, 22);
+INSERT INTO `ums_role_permission_relation` VALUES (232, 1, 23);
+INSERT INTO `ums_role_permission_relation` VALUES (233, 1, 24);
+INSERT INTO `ums_role_permission_relation` VALUES (234, 1, 25);
+INSERT INTO `ums_role_permission_relation` VALUES (235, 1, 26);
+INSERT INTO `ums_role_permission_relation` VALUES (236, 1, 27);
+INSERT INTO `ums_role_permission_relation` VALUES (237, 1, 28);
+INSERT INTO `ums_role_permission_relation` VALUES (238, 1, 29);
+INSERT INTO `ums_role_permission_relation` VALUES (239, 1, 30);
+INSERT INTO `ums_role_permission_relation` VALUES (240, 1, 31);
+INSERT INTO `ums_role_permission_relation` VALUES (241, 1, 32);
+INSERT INTO `ums_role_permission_relation` VALUES (242, 1, 33);
+INSERT INTO `ums_role_permission_relation` VALUES (243, 1, 34);
+INSERT INTO `ums_role_permission_relation` VALUES (244, 1, 35);
+INSERT INTO `ums_role_permission_relation` VALUES (245, 1, 36);
+INSERT INTO `ums_role_permission_relation` VALUES (246, 1, 37);
+INSERT INTO `ums_role_permission_relation` VALUES (247, 1, 38);
+INSERT INTO `ums_role_permission_relation` VALUES (248, 1, 39);
+INSERT INTO `ums_role_permission_relation` VALUES (249, 1, 40);
+INSERT INTO `ums_role_permission_relation` VALUES (250, 1, 41);
+INSERT INTO `ums_role_permission_relation` VALUES (251, 1, 42);
+INSERT INTO `ums_role_permission_relation` VALUES (252, 1, 43);
+INSERT INTO `ums_role_permission_relation` VALUES (253, 1, 44);
+INSERT INTO `ums_role_permission_relation` VALUES (254, 1, 45);
+INSERT INTO `ums_role_permission_relation` VALUES (255, 1, 46);
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -33,9 +33,6 @@ public class UmsPermission implements Serializable {
     @ApiModelProperty(value = "前端资源路径")
     private String uri;
 
-    @ApiModelProperty(value = "启用状态；0->禁用；1->启用")
-    private Integer enabled;
-
     @ApiModelProperty(value = "排序")
     private Integer sort;
     
@@ -43,7 +40,7 @@ public class UmsPermission implements Serializable {
     private Date createTime;
     
     @ApiModelProperty(value = "修改时间")
-    private Date update_time;
+    private Date updateTime;
     
     @ApiModelProperty(value = "创建人")
     private String creater;
@@ -117,14 +114,6 @@ public class UmsPermission implements Serializable {
 		this.uri = uri;
 	}
 
-	public Integer getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(Integer enabled) {
-		this.enabled = enabled;
-	}
-
 	public Integer getSort() {
 		return sort;
 	}
@@ -141,12 +130,12 @@ public class UmsPermission implements Serializable {
 		this.createTime = createTime;
 	}
 
-	public Date getUpdate_time() {
-		return update_time;
+	public Date getUpdateTime() {
+		return updateTime;
 	}
 
-	public void setUpdate_time(Date update_time) {
-		this.update_time = update_time;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 
 	public String getCreater() {
@@ -172,5 +161,5 @@ public class UmsPermission implements Serializable {
 	public void setChildren(List<UmsPermission> children) {
 		this.children = children;
 	}
-    
+
 }

@@ -68,18 +68,27 @@
   		<if test="name != null">
   			pid = #{pid},
   		</if>
+  		<if test="sort != null">
+  			sort = #{sort},
+  		</if>
+  		<if test="updateTime != null">
+  			update_time = #{updateTime},
+  		</if>
+  		<if test="updater != null">
+  			updater = #{updater},
+  		</if>
   	</trim>
   	WHERE id = #{id}
   </update>
   
   <insert id="insertUmsPermission" parameterType="com.tmall.model.UmsPermission" useGeneratedKeys="true" keyProperty="id">
 	INSERT INTO ums_permission (
-		pid, alias, name, value, icon, type, uri, enabled, sort, create_time, creater
+		pid, alias, name, value, icon, type, uri, sort, create_time, creater
       )
     values (#{pid,jdbcType=BIGINT}, #{alias,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER} ,#{uri,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, 
-      #{sort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}
+      #{type,jdbcType=INTEGER} ,#{uri,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}
       );
   </insert>
   

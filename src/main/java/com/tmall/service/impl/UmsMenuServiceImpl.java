@@ -1,6 +1,8 @@
 package com.tmall.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -17,7 +19,6 @@ import com.tmall.dto.MenuMetaVo;
 import com.tmall.dto.MenuVo;
 import com.tmall.dto.UmsMenuParam;
 import com.tmall.model.UmsMenu;
-import com.tmall.model.UmsPermission;
 import com.tmall.model.UmsRole;
 import com.tmall.service.UmsMenuService;
 import com.tmall.service.UmsRoleService;
@@ -37,7 +38,24 @@ public class UmsMenuServiceImpl implements UmsMenuService {
 		List<UmsMenu> menuList = this.getMenuList(userId);
 		// 构建菜单树
 		List<UmsMenu> menuTree = this.getMenusTree(menuList);
+		//菜单根据排序号排序，升序排序
+		menuSort(menuTree);
 		return menuTree;
+	}
+
+	private void menuSort(List<UmsMenu> list) {
+		if (list != null && list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+				UmsMenu umsMenu = list.get(i);
+				Collections.sort(list, new Comparator<UmsMenu>() {
+					@Override
+					public int compare(UmsMenu o1, UmsMenu o2) {
+						return o1.getSort().compareTo(o2.getSort());
+					}
+				});
+				menuSort(umsMenu.getChildren());
+			}
+		}
 	}
 
 	/**
@@ -158,6 +176,7 @@ public class UmsMenuServiceImpl implements UmsMenuService {
 		List<UmsMenu> umsMenuList = umsMenuMapper.selectUmsMenuLikeUmsMenu(umsMenuSearchParam);
 		//构建菜单树
 		List<UmsMenu> umsMenuTree = this.getMenusTree(umsMenuList);
+		menuSort(umsMenuTree);
 		if (umsMenuTree.size() == 0 && !StringUtils.isEmpty(name)) {
 			return umsMenuList;
 		}else {

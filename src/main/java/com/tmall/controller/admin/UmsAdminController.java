@@ -2,6 +2,8 @@ package com.tmall.controller.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,8 +51,10 @@ public class UmsAdminController extends BaseController {
 	@ApiOperation("添加用户")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult create(@RequestBody UmsAdminParam umsAdminParam) {
-        int count = umsAdminService.create(umsAdminParam);
+    public CommonResult create(@RequestBody UmsAdminParam umsAdminParam,
+    						   HttpServletRequest request) {
+		UmsAdmin umsAdmin = getUmsAdmin(request);
+        int count = umsAdminService.create(umsAdminParam, umsAdmin.getUsername());
         return CommonResult.success("添加用户成功");
     }
 	
@@ -58,8 +62,10 @@ public class UmsAdminController extends BaseController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult update(@PathVariable Long id,
-                         	   @RequestBody UmsAdminParam umsAdminParam) {
-        int count = umsAdminService.update(id, umsAdminParam);
+                         	   @RequestBody UmsAdminParam umsAdminParam,
+                         	   HttpServletRequest request) {
+		UmsAdmin umsAdmin = getUmsAdmin(request);
+        int count = umsAdminService.update(id, umsAdminParam, umsAdmin.getUsername());
         return CommonResult.success("修改用户成功");
     }
 	

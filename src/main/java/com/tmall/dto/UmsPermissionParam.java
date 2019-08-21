@@ -8,6 +8,8 @@ public class UmsPermissionParam {
     private String name;
     @ApiModelProperty(value = "权限别名", required = true)
     private String alias;
+    @ApiModelProperty(value = "排序号", required = true)
+    private Integer sort;
     @ApiModelProperty(value = "父id", required = true)
     private Long pid;
 	public String getName() {
@@ -22,11 +24,17 @@ public class UmsPermissionParam {
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
+	public Integer getSort() {
+		return sort;
+	}
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
 	public Long getPid() {
 		return pid;
 	}
 	public void setPid(Long pid) {
 		this.pid = pid;
 	}
-	
+    
 }

@@ -22,18 +22,20 @@ public interface UmsPermissionService {
 	
 	/**
 	 * 修改权限
-	 * @param id
-	 * @param umsPermissonParam
+	 * @param id 权限id
+	 * @param umsPermissonParam 前端权限参数集
+	 * @param updater 修改人
 	 * @return
 	 */
-	int update(Long id, UmsPermissionParam umsPermissionParam);
+	int update(Long id, UmsPermissionParam umsPermissionParam, String updater);
 	
 	/**
 	 * 添加权限
-	 * @param umsPermissionParam
+	 * @param umsPermissionParam 前端权限参数集
+	 * @param creater 创建人
 	 * @return
 	 */
-	Long create(UmsPermissionParam umsPermissionParam);
+	Long create(UmsPermissionParam umsPermissionParam, String creater);
 	
 	/**
 	 * 删除权限

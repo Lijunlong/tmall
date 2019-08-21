@@ -46,15 +46,17 @@ public interface UmsRoleService {
 	 * 修改角色
 	 * @param id 角色id
 	 * @param umsRoleParam 角色前端参数集
+	 * @param updater 修改人
 	 * @return
 	 */
-	int updateRole(Long id, UmsRoleParam umsRoleParam);
+	int updateRole(Long id, UmsRoleParam umsRoleParam, String updater);
 	
 	/**
 	 * 添加角色
 	 * @param umsRoleParam 角色前端参数集
+	 * @param creater 创建人
 	 * @return
 	 */
-	int insertRole(UmsRoleParam umsRoleParam);
+	int insertRole(UmsRoleParam umsRoleParam, String creater);
 
 }

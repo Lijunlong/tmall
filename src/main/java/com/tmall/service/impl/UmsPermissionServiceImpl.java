@@ -1,6 +1,9 @@
 package com.tmall.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +15,6 @@ import org.springframework.util.StringUtils;
 
 import com.tmall.dao.UmsPermissionMapper;
 import com.tmall.dto.UmsPermissionParam;
-import com.tmall.model.UmsAdmin;
 import com.tmall.model.UmsPermission;
 import com.tmall.service.UmsPermissionService;
 
@@ -40,13 +42,15 @@ public class UmsPermissionServiceImpl implements UmsPermissionService {
 		List<UmsPermission> permissionList = umsPermissionMapper.selectUmsPermissionLikeUmsPermission(umsPermission);
 		//构建权限树
 		List<UmsPermission> permissionTrees = this.buildPermissionTrees(permissionList);
+		//权限树根据排序号排序，升序排序
+		permissionSort(permissionTrees);
 		if (permissionTrees.size() == 0 && !StringUtils.isEmpty(name)) {
 			return permissionList;
 		}else {
 			return permissionTrees;
 		}
 	}
-	
+
 	/**
 	 * 构建权限树
 	 * @param permissionList 权限列表
@@ -102,16 +106,20 @@ public class UmsPermissionServiceImpl implements UmsPermissionService {
 	}
 
 	@Override
-	public int update(Long id, UmsPermissionParam umsPermissionParam) {
+	public int update(Long id, UmsPermissionParam umsPermissionParam, String updater) {
 		UmsPermission umsPermisson = this.createUmsPermissionByUmsPermissionParam(umsPermissionParam);
 		umsPermisson.setId(id);
+		umsPermisson.setUpdateTime(new Date());
+		umsPermisson.setUpdater(updater);
 		umsPermissionMapper.updateUmsPermission(umsPermisson);
 		return 1;
 	}
 	
 	@Override
-	public Long create(UmsPermissionParam umsPermissionParam) {
+	public Long create(UmsPermissionParam umsPermissionParam, String creater) {
 		UmsPermission umsPermisson = this.createUmsPermissionByUmsPermissionParam(umsPermissionParam);
+		umsPermisson.setCreateTime(new Date());
+		umsPermisson.setCreater(creater);
 		umsPermissionMapper.insertUmsPermission(umsPermisson);
 		return umsPermisson.getId();
 	}
@@ -150,6 +158,21 @@ public class UmsPermissionServiceImpl implements UmsPermissionService {
 			return umsPermissionName;
 		}else {
 			return new String[] {};
+		}
+	}
+	
+	private void permissionSort(List<UmsPermission> list) {
+		if (list != null && list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+				UmsPermission umsPermission = list.get(i);
+				Collections.sort(list, new Comparator<UmsPermission>() {
+					@Override
+					public int compare(UmsPermission o1, UmsPermission o2) {
+						return o1.getSort().compareTo(o2.getSort());
+					}
+				});
+				permissionSort(umsPermission.getChildren());
+			}
 		}
 	}
     

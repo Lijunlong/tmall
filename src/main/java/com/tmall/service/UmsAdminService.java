@@ -21,17 +21,19 @@ public interface UmsAdminService {
 	
 	/**
 	 * 添加用户
-	 * @param umsAdminParam
+	 * @param umsAdminParam 前端用户参数集
+	 * @param creator 创建人
 	 * @return
 	 */
-	int create(UmsAdminParam umsAdminParam);
+	int create(UmsAdminParam umsAdminParam, String creator);
 	/**
 	 * 修改用户
-	 * @param umsAdminId
-	 * @param umsAdminParam
+	 * @param umsAdminId 用户id
+	 * @param umsAdminParam 前端用户参数集
+	 * @param updater 修改人
 	 * @return
 	 */
-	int update(Long umsAdminId, UmsAdminParam umsAdminParam);
+	int update(Long umsAdminId, UmsAdminParam umsAdminParam, String updater);
 	
 	/**
 	 * 删除用户

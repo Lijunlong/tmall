@@ -17,6 +17,8 @@ import com.tmall.model.UmsRole;
  * 用户管理参数
  */
 public class UmsAdminParam {
+	@ApiModelProperty(value = "昵称", required = true)
+    private String nickName;
     @ApiModelProperty(value = "用户名", required = true)
     private String username;
     @ApiModelProperty(value = "状态，1启用，0禁用", required = true)
@@ -31,6 +33,12 @@ public class UmsAdminParam {
     private UmsJob job;
     @ApiModelProperty(value = "角色列表", required = true)
     private List<UmsRole> roles;
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 	public String getUsername() {
 		return username;
 	}

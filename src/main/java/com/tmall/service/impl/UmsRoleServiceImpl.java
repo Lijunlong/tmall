@@ -133,7 +133,7 @@ public class UmsRoleServiceImpl implements UmsRoleService {
 	}
 
 	@Override
-	public int updateRole(Long roleId, UmsRoleParam umsRoleParam) {
+	public int updateRole(Long roleId, UmsRoleParam umsRoleParam, String updater) {
 		List<UmsDepartment> deptList = umsRoleParam.getDepts();
 		//删除之前的角色与部门的关系表
 		umsRoleDepartmentRelationService.deleteUmsRoleDepartmentRelationByRoleId(roleId);
@@ -149,14 +149,16 @@ public class UmsRoleServiceImpl implements UmsRoleService {
 		UmsRole umsRole = this.createUmsRoleByUmsRoleParam(umsRoleParam);
 		umsRole.setId(roleId);
 		umsRole.setUpdateTime(new Date());
+		umsRole.setUpdater(updater);
 		umsRoleMapper.updateUmsRoleById(umsRole);
 		return 1;
 	}
 	
 	@Override
-	public int insertRole(UmsRoleParam umsRoleParam) {
+	public int insertRole(UmsRoleParam umsRoleParam, String creater) {
 		UmsRole umsRole = this.createUmsRoleByUmsRoleParam(umsRoleParam);
 		umsRole.setCreateTime(new Date());
+		umsRole.setCreater(creater);
 		//添加角色表
 		umsRoleMapper.insertUmsRole(umsRole);
 		Long roleId = umsRole.getId();//新增返回的角色id
