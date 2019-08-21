@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tmall.dao.UmsRoleDepartmentRelationMapper">
+	
+	<resultMap id="BaseResultMap" type="com.tmall.model.UmsRoleDepartmentRelation">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="role_id" jdbcType="BIGINT" property="roleId" />
+		<result column="department_id" jdbcType="BIGINT" property="departmentId" />
+	</resultMap>
+	
+	<insert id="insertUmsRoleDepartmentRelation" parameterType="com.tmall.model.UmsRoleDepartmentRelation" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO ums_role_department_relation (role_id, department_id) VALUES (#{roleId}, #{departmentId})
+	</insert>
+	
+	<delete id="deleteUmsRoleDepartmentRelationByRoleId" parameterType="java.lang.Long">
+		DELETE FROM ums_role_department_relation WHERE role_id = #{roleId}
+	</delete>
+	
+</mapper>

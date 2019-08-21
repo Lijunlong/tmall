@@ -10,6 +10,14 @@ public interface UmsRoleMapper {
 
 	List<UmsRole> selectRoleListByAdminId(@Param("adminId")long userId);
 
-	List<UmsRole> selectUmsRoleList(UmsRole umsRole);
-	
+	List<UmsRole> selectUmsRoleListLikeUmsRole(UmsRole umsRole);
+
+	UmsRole selectUmsRoleById(@Param("id")Long id);
+
+	int deleteUmsRoleById(@Param("id")Long id);
+
+	int updateUmsRoleById(UmsRole umsRole);
+
+	Long insertUmsRole(UmsRole umsRole);
+
 }

@@ -39,6 +39,9 @@
 			<if test="enabled != null">
 				AND enabled = #{enabled}
 			</if>
+			<if test="umsDepartmentId != null">
+				AND ums_department_id = #{umsDepartmentId}
+			</if>
 		</where>
 	</select>
 	

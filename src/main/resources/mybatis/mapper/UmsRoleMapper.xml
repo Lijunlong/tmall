@@ -8,6 +8,8 @@
 		<result column="description" jdbcType="VARCHAR" property="description" />
 		<result column="status" jdbcType="INTEGER" property="status" />
 		<result column="sort" jdbcType="INTEGER" property="sort" />
+		<result column="data_scope" jdbcType="VARCHAR" property="dataScope" />
+		<result column="level" jdbcType="INTEGER" property="level" />
 		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
 	    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
 	    <result column="creater" jdbcType="VARCHAR" property="creater" />
@@ -23,7 +25,76 @@
 			WHERE admin_role_rel.admin_id = #{adminId}
 	</select>
 	
-	<select id="selectUmsRoleList" parameterType="com.tmall.model.UmsRole" resultMap="BaseResultMap">
-		SELECT * FROM ums_role
+	<select id="selectUmsRoleListLikeUmsRole" parameterType="com.tmall.model.UmsRole" resultMap="BaseResultMap">
+		SELECT * FROM ums_role 
+		<where>
+			<if test="name != null">
+				AND name LIKE CONCAT ('%',#{name},'%')
+			</if>
+		</where>
 	</select>
+	
+	<select id="selectUmsRoleById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		SELECT * FROM ums_role WHERE id = #{id}
+	</select>
+	
+	<delete id="deleteUmsRoleById" parameterType="java.lang.Long">
+		DELETE FROM ums_role WHERE id = #{id}
+	</delete>
+	
+	<update id="updateUmsRoleById" parameterType="com.tmall.model.UmsRole">
+		UPDATE ums_role
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="name != null">
+				,name = #{name}
+			</if>
+			<if test="description != null">
+				,description = #{description}
+			</if>
+			<if test="dataScope != null">
+				,data_scope = #{dataScope}
+			</if>
+			<if test="level != null">
+				,level = #{level}
+			</if>
+			<if test="updateTime != null">
+				,update_time = #{updateTime}
+			</if>
+			<if test="updater != null">
+				,updater = #{updater}
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+	
+	<insert id="insertUmsRole" parameterType="com.tmall.model.UmsRole" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO ums_role
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="name != null">
+				,name = #{name}
+			</if>
+			<if test="description != null">
+				,description = #{description}
+			</if>
+			<if test="status != null">
+				,status = #{status}
+			</if>
+			<if test="sort != null">
+				,sort = #{sort}
+			</if>
+			<if test="dataScope != null">
+				,data_scope = #{dataScope}
+			</if>
+			<if test="level != null">
+				,level = #{level}
+			</if>
+			<if test="createTime != null">
+				,create_time = #{createTime}
+			</if>
+			<if test="creater != null">
+				,creater = #{creater}
+			</if>
+		</trim>
+	</insert>
+	
 </mapper>

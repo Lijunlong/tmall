@@ -23,12 +23,18 @@ public class UmsRole implements Serializable {
 
 	@ApiModelProperty(value = "排序号")
 	private Integer sort;
+	
+	@ApiModelProperty(value = "数据权限")
+	private String dataScope;
+	
+	@ApiModelProperty(value = "级别")
+	private Integer level;
 
 	@ApiModelProperty(value = "创建时间")
 	private Date createTime;
 
 	@ApiModelProperty(value = "修改时间")
-	private Date update_time;
+	private Date updateTime;
 
 	@ApiModelProperty(value = "创建人")
 	private String creater;
@@ -44,7 +50,7 @@ public class UmsRole implements Serializable {
 	
 	@ApiModelProperty(value = "权限列表")
 	private List<UmsPermission> permissions;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -85,6 +91,22 @@ public class UmsRole implements Serializable {
 		this.sort = sort;
 	}
 
+	public String getDataScope() {
+		return dataScope;
+	}
+
+	public void setDataScope(String dataScope) {
+		this.dataScope = dataScope;
+	}
+
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
+
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -93,12 +115,12 @@ public class UmsRole implements Serializable {
 		this.createTime = createTime;
 	}
 
-	public Date getUpdate_time() {
-		return update_time;
+	public Date getUpdateTime() {
+		return updateTime;
 	}
 
-	public void setUpdate_time(Date update_time) {
-		this.update_time = update_time;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 
 	public String getCreater() {
