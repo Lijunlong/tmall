@@ -20,7 +20,7 @@ public class UmsAdminParam {
     @ApiModelProperty(value = "用户名", required = true)
     private String username;
     @ApiModelProperty(value = "状态，1启用，0禁用", required = true)
-    private String enabled;
+    private Integer enabled;
     @ApiModelProperty(value = "电话号码", required = true)
     private String telphone;
     @ApiModelProperty(value = "邮箱", required = true)
@@ -37,10 +37,10 @@ public class UmsAdminParam {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getEnabled() {
+	public Integer getEnabled() {
 		return enabled;
 	}
-	public void setEnabled(String enabled) {
+	public void setEnabled(Integer enabled) {
 		this.enabled = enabled;
 	}
 	public String getTelphone() {

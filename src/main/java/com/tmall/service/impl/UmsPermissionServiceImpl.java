@@ -137,5 +137,20 @@ public class UmsPermissionServiceImpl implements UmsPermissionService {
 		umsPermissionMapper.deleteUmsPermissionById(permissionId);
 		return 1;
 	}
+
+	@Override
+	public String[] getUmsPermissionNameByAdminId(Long adminId) {
+		List<UmsPermission> umsPermissionList = umsPermissionMapper.getUmsPermissionListByAdminId(adminId);
+		if (umsPermissionList != null && umsPermissionList.size() > 0) {
+			String[] umsPermissionName = new String[umsPermissionList.size()];
+			for (int i = 0; i < umsPermissionList.size(); i++) {
+				UmsPermission umsPermission = umsPermissionList.get(i);
+				umsPermissionName[i] = umsPermission.getName();
+			}
+			return umsPermissionName;
+		}else {
+			return new String[] {};
+		}
+	}
     
 }

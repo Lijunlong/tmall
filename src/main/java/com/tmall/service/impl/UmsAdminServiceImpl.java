@@ -1,6 +1,7 @@
 package com.tmall.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -99,6 +100,8 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 	@Override
 	public int update(Long umsAdminId, UmsAdminParam umsAdminParam) {
 		UmsAdmin umsAdmin = this.createUmsAdminByUmsAdminParam(umsAdminParam);
+		umsAdmin.setId(umsAdminId);
+		umsAdmin.setUpdateTime(new Date());
 		umsAdminMapper.updateUmsAdmin(umsAdmin);
 		//先删除用户与角色的关系表
 		umsAdminRoleRelationService.deleteUmsAdminRoleRelationByAdminId(umsAdminId);
@@ -129,6 +132,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 		UmsAdmin umsAdmin = this.createUmsAdminByUmsAdminParam(umsAdminParam);
 		umsAdmin.setPassword(passwordEncoder.encode(Constant.DEFAULT_PASSWORD));//默认密码，加密
 		umsAdmin.setEnabled(Constant.NORMAL);//状态：启用
+		umsAdmin.setCreateTime(new Date());
 		//插入用户表
 		umsAdminMapper.insertUmsAdmin(umsAdmin);
 		//插入用户与角色关系表

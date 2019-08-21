@@ -2,6 +2,7 @@ package com.tmall.controller.admin;
 
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tmall.common.api.CommonResult;
 import com.tmall.dto.UserLoginParam;
 import com.tmall.model.UmsAdmin;
+import com.tmall.model.UmsPermission;
 import com.tmall.service.UmsAdminLoginService;
+import com.tmall.service.UmsPermissionService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,6 +35,8 @@ import io.swagger.annotations.ApiOperation;
 public class UmsAdminLoginController {
 	@Autowired
 	private UmsAdminLoginService userService;
+	@Autowired
+	private UmsPermissionService umsPermissionService;
 	@Value("${jwt.tokenHeader}")
 	private String tokenHeader;
 	@Value("${jwt.tokenHead}")
@@ -72,11 +77,16 @@ public class UmsAdminLoginController {
 	public Object getAdminInfo(Principal principal) {
 		String username = principal.getName();
 		UmsAdmin umsAdmin = userService.getUserByUsername(username);
-		Map<String, Object> data = new HashMap<>();
-		data.put("username", umsAdmin.getUsername());
-		data.put("roles", new String[] { "TEST" });
-		data.put("icon", umsAdmin.getIcon());
-		return CommonResult.success(data);
+		if (umsAdmin == null) {
+			return CommonResult.failed("获取当前登录用户信息失败，当前登录信息为空");
+		}else {
+			String[] umsPermissionName = umsPermissionService.getUmsPermissionNameByAdminId(umsAdmin.getId());
+			Map<String, Object> data = new HashMap<>();
+			data.put("username", umsAdmin.getUsername());
+			data.put("roles", umsPermissionName);
+			data.put("icon", umsAdmin.getIcon());
+			return CommonResult.success(data);
+		}
 	}
 
 	@ApiOperation(value = "登出功能")

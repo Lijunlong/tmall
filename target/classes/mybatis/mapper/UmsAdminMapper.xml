@@ -105,6 +105,7 @@
 			update_time = #{updateTime},
 		</if>
 	</trim>
+	WHERE id = #{id}
   </update>
   
   <delete id="deleteUmsAdminById" parameterType="java.lang.Long">

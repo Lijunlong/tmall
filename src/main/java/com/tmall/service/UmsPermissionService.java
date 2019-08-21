@@ -41,5 +41,12 @@ public interface UmsPermissionService {
 	 * @return
 	 */
 	int delete(Long permissionId);
+	
+	/**
+	 * 通过用户id获取权限名称集合
+	 * @param adminId 用户id
+	 * @return 权限名称集合
+	 */
+	String[] getUmsPermissionNameByAdminId(Long adminId);
 
 }
