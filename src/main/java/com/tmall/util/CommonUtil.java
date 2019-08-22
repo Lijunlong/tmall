@@ -1,14 +1,12 @@
 package com.tmall.util;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.tmall.model.UmsMenu;
 
 /**
  * 公共工具类 Created by Mr.Li on 2019/08/12
@@ -38,5 +36,24 @@ public class CommonUtil {
 		}
 		return array;
 	}
+	
+	/**
+	 * 获取IP地址
+	 * @param request HttpServletRequest
+	 * @return 当前IP地址
+	 */
+	public static String getIP(HttpServletRequest request) {
+        String ip = request.getHeader("x-forwarded-for");
+        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        return "0:0:0:0:0:0:0:1".equals(ip)?"127.0.0.1":ip;
+    }
 	
 }

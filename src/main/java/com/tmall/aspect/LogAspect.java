@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.tmall.model.UmsAdminLog;
 import com.tmall.service.UmsAdminLogService;
+import com.tmall.util.CommonUtil;
+import com.tmall.util.RequestHolder;
 import com.tmall.util.SecurityUtils;
 
 @Aspect
@@ -22,7 +24,7 @@ public class LogAspect {
 	private long currentTime = 0L;
 	
 	// 切点范围
-	@Pointcut("execution(* com.tmall.service..*(..))")
+	@Pointcut("@annotation(com.tmall.aop.log.Log)")
 	public void pointcut() {
 	}
 
@@ -33,6 +35,7 @@ public class LogAspect {
 			currentTime = System.currentTimeMillis();
 			result = joinPoint.proceed();
 			UmsAdminLog log = new UmsAdminLog("INFO", System.currentTimeMillis() - currentTime);
+			umsAdminLogService.save(getUsername(), CommonUtil.getIP(RequestHolder.getHttpServletRequest()),joinPoint, log);
 		} catch (Throwable throwable) {
 			// 监听参数为true则抛出异常，为false则捕获并不抛出异常
 			if (joinPoint.getArgs().length > 0 && !(Boolean) joinPoint.getArgs()[0]) {

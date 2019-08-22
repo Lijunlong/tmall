@@ -76,5 +76,11 @@ public class UmsMenuParam {
 	public void setHidden(Integer hidden) {
 		this.hidden = hidden;
 	}
+	@Override
+	public String toString() {
+		return "UmsMenuParam [icon=" + icon + ", name=" + name + ", sort=" + sort + ", iFrame=" + iFrame + ", path="
+				+ path + ", component=" + component + ", pid=" + pid + ", enabled=" + enabled + ", hidden=" + hidden
+				+ "]";
+	}
 	
 }

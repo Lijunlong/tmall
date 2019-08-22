@@ -14,5 +14,12 @@
     <result column="creater" jdbcType="VARCHAR" property="creater" />
   </resultMap>
   
+  <insert id="insertUmsAdminLog" parameterType="com.tmall.model.UmsAdminLog" useGeneratedKeys="true" keyColumn="id">
+  	INSERT INTO ums_admin_log (
+  		description,exception_detail,log_type,method,params,request_ip,time,create_time,creater
+  	) VALUES (
+  		#{description},#{exceptionDetail},#{logType},#{method},#{params},#{requestIp},#{time},#{createTime},#{creater}
+  	)
+  </insert>
   
 </mapper>

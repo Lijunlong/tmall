@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tmall.aop.log.Log;
 import com.tmall.common.api.CommonPage;
 import com.tmall.common.api.CommonResult;
 import com.tmall.quartz.model.QuartzJob;
@@ -47,6 +48,7 @@ public class SysTimingController {
         return CommonResult.success(CommonPage.restPage(quartzJobList));
     }
     
+    @Log("新增定时任务")
     @ApiOperation("新增定时任务")
     @RequestMapping(value = "/job", method = RequestMethod.POST)
     @ResponseBody
@@ -54,7 +56,8 @@ public class SysTimingController {
     	Long id = quartzJobService.insertQuartzJob(quartzJob);
     	return CommonResult.success(id);
     }
-
+    
+    @Log("修改定时任务")
     @ApiOperation("修改定时任务")
     @RequestMapping(value = "/job/{id}", method = RequestMethod.PUT)
     @ResponseBody
@@ -68,6 +71,7 @@ public class SysTimingController {
 		}
     }
     
+    @Log("执行定时任务")
     @ApiOperation("执行定时任务")
     @RequestMapping(value = "/job/execute_job/{id}", method = RequestMethod.PUT)
     @ResponseBody
@@ -80,6 +84,7 @@ public class SysTimingController {
 		}
     }
     
+    @Log("修改定时任务状态")
     @ApiOperation("修改定时任务状态")
     @RequestMapping(value = "/job/update_job_status/{id}", method = RequestMethod.PUT)
     @ResponseBody
@@ -92,6 +97,7 @@ public class SysTimingController {
 		}
     }
     
+    @Log("删除定时任务")
     @ApiOperation("删除定时任务")
     @RequestMapping(value = "/job/delete_job/{id}", method = RequestMethod.DELETE)
     @ResponseBody

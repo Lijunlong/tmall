@@ -74,5 +74,11 @@ public class PmsProductCategoryParam {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	@Override
+	public String toString() {
+		return "PmsProductCategoryParam [parentId=" + parentId + ", name=" + name + ", level=" + level + ", showStatus="
+				+ showStatus + ", sort=" + sort + ", icon=" + icon + ", keywords=" + keywords + ", description="
+				+ description + "]";
+	}
 
 }

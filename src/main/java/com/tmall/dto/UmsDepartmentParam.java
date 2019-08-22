@@ -28,5 +28,9 @@ public class UmsDepartmentParam {
 	public void setPid(Long pid) {
 		this.pid = pid;
 	}
+	@Override
+	public String toString() {
+		return "UmsDepartmentParam [name=" + name + ", enabled=" + enabled + ", pid=" + pid + "]";
+	}
     
 }

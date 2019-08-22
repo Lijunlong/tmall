@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tmall.aop.log.Log;
 import com.tmall.common.api.CommonResult;
 import com.tmall.dto.UserLoginParam;
 import com.tmall.model.UmsAdmin;
@@ -39,7 +40,8 @@ public class UmsAdminLoginController {
 	private String tokenHeader;
 	@Value("${jwt.tokenHead}")
 	private String tokenHead;
-
+	
+	@Log("用户登录")
 	@ApiOperation(value = "登录以后返回token")
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
@@ -86,7 +88,7 @@ public class UmsAdminLoginController {
 			return CommonResult.success(data);
 		}
 	}
-
+	
 	@ApiOperation(value = "登出功能")
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
 	@ResponseBody

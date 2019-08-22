@@ -36,5 +36,10 @@ public class UmsJobParam {
 	public void setUmsDepartmentId(Long umsDepartmentId) {
 		this.umsDepartmentId = umsDepartmentId;
 	}
+	@Override
+	public String toString() {
+		return "UmsJobParam [name=" + name + ", sort=" + sort + ", enabled=" + enabled + ", umsDepartmentId="
+				+ umsDepartmentId + "]";
+	}
     
 }

@@ -81,5 +81,10 @@ public class UmsAdminParam {
 	public void setRoles(List<UmsRole> roles) {
 		this.roles = roles;
 	}
+	@Override
+	public String toString() {
+		return "UmsAdminParam [nickName=" + nickName + ", username=" + username + ", enabled=" + enabled + ", telphone="
+				+ telphone + ", email=" + email + ", dept=" + dept + ", job=" + job + ", roles=" + roles + "]";
+	}
     
 }

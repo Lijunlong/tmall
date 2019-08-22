@@ -36,5 +36,9 @@ public class UmsPermissionParam {
 	public void setPid(Long pid) {
 		this.pid = pid;
 	}
+	@Override
+	public String toString() {
+		return "UmsPermissionParam [name=" + name + ", alias=" + alias + ", sort=" + sort + ", pid=" + pid + "]";
+	}
     
 }

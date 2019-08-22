@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSONObject;
+import com.tmall.aop.log.Log;
 import com.tmall.common.api.CommonResult;
 import com.tmall.controller.BaseController;
 import com.tmall.util.Constant;
@@ -27,7 +28,8 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "FileUploadController", description = "文件上传管理")
 @RequestMapping("/files")
 public class FileUploadController extends BaseController {
-
+	
+	@Log("上传文件")
 	@ApiOperation("上传文件")
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	@ResponseBody

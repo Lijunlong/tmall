@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tmall.aop.log.Log;
 import com.tmall.common.api.CommonPage;
 import com.tmall.common.api.CommonResult;
 import com.tmall.dto.PmsProductCategoryParam;
@@ -42,6 +43,7 @@ public class PmsProductCategoryController {
         return CommonResult.success(CommonPage.restPage(productCategoryList));
     }
     
+    @Log("添加产品分类")
     @ApiOperation("添加产品分类")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
@@ -54,6 +56,7 @@ public class PmsProductCategoryController {
         }
     }
     
+    @Log("修改显示状态")
     @ApiOperation("修改显示状态")
     @RequestMapping(value = "/update/showStatus", method = RequestMethod.POST)
     @ResponseBody
@@ -80,6 +83,7 @@ public class PmsProductCategoryController {
         return CommonResult.success(pmsProductCategory);
     }
     
+    @Log("修改商品分类")
     @ApiOperation("修改商品分类")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody

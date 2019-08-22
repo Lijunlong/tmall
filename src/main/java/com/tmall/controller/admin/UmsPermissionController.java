@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tmall.aop.log.Log;
 import com.tmall.common.api.CommonResult;
 import com.tmall.controller.BaseController;
 import com.tmall.dto.UmsPermissionParam;
@@ -49,6 +50,7 @@ public class UmsPermissionController extends BaseController {
         return CommonResult.success(permissionTrees);
     }
 	
+	@Log("修改权限")
 	@ApiOperation("修改权限")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -58,6 +60,7 @@ public class UmsPermissionController extends BaseController {
         return CommonResult.success("修改权限成功");
     }
 	
+	@Log("添加权限")
 	@ApiOperation("添加权限")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
@@ -66,6 +69,7 @@ public class UmsPermissionController extends BaseController {
         return CommonResult.success("添加权限成功");
     }
 	
+	@Log("删除权限")
 	@ApiOperation("删除权限")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody

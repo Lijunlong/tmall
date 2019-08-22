@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tmall.aop.log.Log;
 import com.tmall.common.api.CommonPage;
 import com.tmall.common.api.CommonResult;
 import com.tmall.controller.BaseController;
@@ -44,6 +45,7 @@ public class UmsAdminController extends BaseController {
         return CommonResult.success(CommonPage.restPage(adminList));
     }
 	
+	@Log("添加用户")
 	@ApiOperation("添加用户")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
@@ -52,6 +54,7 @@ public class UmsAdminController extends BaseController {
         return CommonResult.success("添加用户成功");
     }
 	
+	@Log("修改用户")
 	@ApiOperation("修改用户")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -61,6 +64,7 @@ public class UmsAdminController extends BaseController {
         return CommonResult.success("修改用户成功");
     }
 	
+	@Log("删除用户")
 	@ApiOperation("删除用户")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody

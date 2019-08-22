@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tmall.aop.log.Log;
 import com.tmall.common.api.CommonResult;
 import com.tmall.controller.BaseController;
 import com.tmall.dto.UmsDepartmentParam;
@@ -49,6 +50,7 @@ public class UmsDepartmentController extends BaseController {
         return CommonResult.success(departmentTrees);
     }
 	
+	@Log("修改部门")
 	@ApiOperation("修改部门")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -58,6 +60,7 @@ public class UmsDepartmentController extends BaseController {
         return CommonResult.success("修改部门成功");
     }
 	
+	@Log("添加部门")
 	@ApiOperation("添加部门")
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
@@ -66,6 +69,7 @@ public class UmsDepartmentController extends BaseController {
         return CommonResult.success("添加部门成功");
     }
 	
+	@Log("删除部门")
 	@ApiOperation("删除部门")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody

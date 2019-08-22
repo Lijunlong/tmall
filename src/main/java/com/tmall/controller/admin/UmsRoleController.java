@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tmall.aop.log.Log;
 import com.tmall.common.api.CommonPage;
 import com.tmall.common.api.CommonResult;
 import com.tmall.controller.BaseController;
@@ -52,6 +53,7 @@ public class UmsRoleController extends BaseController {
         return CommonResult.success(umsRole);
     }
 	
+	@Log("修改角色菜单")
 	@ApiOperation("修改角色菜单")
     @RequestMapping(value = "/update/menu/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -60,6 +62,7 @@ public class UmsRoleController extends BaseController {
         return CommonResult.success("修改角色菜单成功");
     }
 	
+	@Log("修改角色权限")
 	@ApiOperation("修改角色权限")
     @RequestMapping(value = "/update/permission/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -68,6 +71,7 @@ public class UmsRoleController extends BaseController {
         return CommonResult.success("修改角色权限成功");
     }
 	
+	@Log("删除角色")
 	@ApiOperation("删除角色")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseBody
@@ -76,6 +80,7 @@ public class UmsRoleController extends BaseController {
         return CommonResult.success("删除角色成功");
     }
 	
+	@Log("添加角色")
 	@ApiOperation("添加角色")
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
@@ -84,6 +89,7 @@ public class UmsRoleController extends BaseController {
         return CommonResult.success("添加角色成功");
     }
 	
+	@Log("修改角色")
 	@ApiOperation("修改角色")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody

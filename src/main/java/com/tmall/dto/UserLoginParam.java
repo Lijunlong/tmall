@@ -45,5 +45,10 @@ public class UserLoginParam {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	@Override
+	public String toString() {
+		return "UserLoginParam [username=" + username + ", password= ******, nickName=" + nickName + ", email="
+				+ email + "]";
+	}
     
 }
