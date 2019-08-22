@@ -3,8 +3,6 @@ package com.tmall.controller.admin;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tmall.common.api.CommonResult;
 import com.tmall.controller.BaseController;
 import com.tmall.dto.UmsPermissionParam;
-import com.tmall.model.UmsAdmin;
 import com.tmall.model.UmsPermission;
 import com.tmall.service.UmsPermissionService;
+import com.tmall.util.SecurityUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -55,20 +53,16 @@ public class UmsPermissionController extends BaseController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult update(@PathVariable Long id,
-                         	   @RequestBody UmsPermissionParam umsPermissionParam,
-                         	   HttpServletRequest request) {
-		UmsAdmin umsAdmin = getUmsAdmin(request);
-        int count = umsPermissionService.update(id, umsPermissionParam,umsAdmin.getUsername());
+                         	   @RequestBody UmsPermissionParam umsPermissionParam) {
+        int count = umsPermissionService.update(id, umsPermissionParam,SecurityUtils.getUsername());
         return CommonResult.success("修改权限成功");
     }
 	
 	@ApiOperation("添加权限")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult create(@RequestBody UmsPermissionParam umsPermissionParam,
-    						   HttpServletRequest request) {
-		UmsAdmin umsAdmin = getUmsAdmin(request);
-        Long id = umsPermissionService.create(umsPermissionParam,umsAdmin.getUsername());
+    public CommonResult create(@RequestBody UmsPermissionParam umsPermissionParam) {
+        Long id = umsPermissionService.create(umsPermissionParam,SecurityUtils.getUsername());
         return CommonResult.success("添加权限成功");
     }
 	

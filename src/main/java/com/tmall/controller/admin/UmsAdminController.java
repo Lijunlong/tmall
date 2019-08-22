@@ -2,8 +2,6 @@ package com.tmall.controller.admin;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,15 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSONObject;
 import com.tmall.common.api.CommonPage;
 import com.tmall.common.api.CommonResult;
 import com.tmall.controller.BaseController;
-import com.tmall.dto.PmsProductCategoryParam;
 import com.tmall.dto.UmsAdminParam;
 import com.tmall.model.UmsAdmin;
 import com.tmall.service.UmsAdminService;
-import com.tmall.service.UmsMenuService;
+import com.tmall.util.SecurityUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -51,10 +47,8 @@ public class UmsAdminController extends BaseController {
 	@ApiOperation("添加用户")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult create(@RequestBody UmsAdminParam umsAdminParam,
-    						   HttpServletRequest request) {
-		UmsAdmin umsAdmin = getUmsAdmin(request);
-        int count = umsAdminService.create(umsAdminParam, umsAdmin.getUsername());
+    public CommonResult create(@RequestBody UmsAdminParam umsAdminParam) {
+        int count = umsAdminService.create(umsAdminParam, SecurityUtils.getUsername());
         return CommonResult.success("添加用户成功");
     }
 	
@@ -62,10 +56,8 @@ public class UmsAdminController extends BaseController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult update(@PathVariable Long id,
-                         	   @RequestBody UmsAdminParam umsAdminParam,
-                         	   HttpServletRequest request) {
-		UmsAdmin umsAdmin = getUmsAdmin(request);
-        int count = umsAdminService.update(id, umsAdminParam, umsAdmin.getUsername());
+                         	   @RequestBody UmsAdminParam umsAdminParam) {
+        int count = umsAdminService.update(id, umsAdminParam, SecurityUtils.getUsername());
         return CommonResult.success("修改用户成功");
     }
 	

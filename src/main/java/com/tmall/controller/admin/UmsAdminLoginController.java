@@ -2,7 +2,6 @@ package com.tmall.controller.admin;
 
 import java.security.Principal;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tmall.common.api.CommonResult;
 import com.tmall.dto.UserLoginParam;
 import com.tmall.model.UmsAdmin;
-import com.tmall.model.UmsPermission;
 import com.tmall.service.UmsAdminLoginService;
 import com.tmall.service.UmsPermissionService;
 

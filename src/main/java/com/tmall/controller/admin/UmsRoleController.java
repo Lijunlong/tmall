@@ -2,8 +2,6 @@ package com.tmall.controller.admin;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +15,9 @@ import com.tmall.common.api.CommonPage;
 import com.tmall.common.api.CommonResult;
 import com.tmall.controller.BaseController;
 import com.tmall.dto.UmsRoleParam;
-import com.tmall.model.UmsAdmin;
 import com.tmall.model.UmsRole;
 import com.tmall.service.UmsRoleService;
+import com.tmall.util.SecurityUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -81,20 +79,16 @@ public class UmsRoleController extends BaseController {
 	@ApiOperation("添加角色")
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult insertRole(@RequestBody UmsRoleParam umsRoleParam,
-    							   HttpServletRequest request) {
-		UmsAdmin umsAdmin = getUmsAdmin(request);
-        int count = umsRoleService.insertRole(umsRoleParam,umsAdmin.getUsername());
+    public CommonResult insertRole(@RequestBody UmsRoleParam umsRoleParam) {
+        int count = umsRoleService.insertRole(umsRoleParam,SecurityUtils.getUsername());
         return CommonResult.success("添加角色成功");
     }
 	
 	@ApiOperation("修改角色")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateRole(@PathVariable Long id,@RequestBody UmsRoleParam umsRoleParam,
-    							   HttpServletRequest request) {
-		UmsAdmin umsAdmin = getUmsAdmin(request);
-        int count = umsRoleService.updateRole(id,umsRoleParam,umsAdmin.getUsername());
+    public CommonResult updateRole(@PathVariable Long id,@RequestBody UmsRoleParam umsRoleParam) {
+        int count = umsRoleService.updateRole(id,umsRoleParam,SecurityUtils.getUsername());
         return CommonResult.success("修改角色成功");
     }
 	
