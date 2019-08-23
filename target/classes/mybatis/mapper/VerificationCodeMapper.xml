@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tmall.dao.VerificationCodeMapper">
+	
+	<resultMap id="BaseResultMap" type="com.tmall.model.VerificationCode">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="code" jdbcType="VARCHAR" property="code" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="value" jdbcType="VARCHAR" property="value" />
+		<result column="scenes" jdbcType="VARCHAR" property="scenes" />
+	</resultMap>
+	
+	<select id="selectValidVerificationCodeByTypeAndValueAndScenes" parameterType="com.tmall.model.VerificationCode" resultMap="BaseResultMap">
+		SELECT * FROM verification_code 
+			WHERE status = '1' AND type = #{type} AND value = #{value} AND scenes = #{scenes}
+			LIMIT 1
+	</select>
+	
+	<insert id="insertVerificationCode" parameterType="com.tmall.model.VerificationCode" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO verification_code (
+			code,create_time,status,type,value,scenes
+		) VALUES (
+			#{code},#{createTime},#{status},#{type},#{value},#{scenes}
+		)
+	</insert>
+	
+</mapper>

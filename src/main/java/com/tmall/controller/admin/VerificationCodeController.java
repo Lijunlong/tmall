@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tmall.common.api.CommonResult;
 import com.tmall.controller.BaseController;
 import com.tmall.model.VerificationCode;
-import com.tmall.service.UmsVerificationCodeService;
+import com.tmall.service.VerificationCodeService;
+import com.tmall.util.Constant;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,17 +22,18 @@ import io.swagger.annotations.ApiOperation;
 @Controller
 @Api(tags = "UmsVerificationCodeController", description = "验证码管理")
 @RequestMapping("/code")
-public class UmsVerificationCodeController extends BaseController {
+public class VerificationCodeController extends BaseController {
 
 	@Autowired
-	private UmsVerificationCodeService umsVerificationCodeService;
+	private VerificationCodeService umsVerificationCodeService;
 
-	@ApiOperation("修改邮箱")
+	@ApiOperation("发送邮箱验证码")
 	@RequestMapping(value = "/resetEmail", method = RequestMethod.POST)
 	@ResponseBody
 	public CommonResult resetEmail(@RequestBody VerificationCode verificationCode) {
+		verificationCode.setScenes(Constant.RESET_MAIL);
 		int count = umsVerificationCodeService.resetEmail(verificationCode);
-		return CommonResult.success("修改邮箱成功");
+		return CommonResult.success("已发送邮箱验证码");
 	}
 	
 }

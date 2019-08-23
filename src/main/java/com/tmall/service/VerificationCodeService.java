@@ -2,7 +2,7 @@ package com.tmall.service;
 
 import com.tmall.model.VerificationCode;
 
-public interface UmsVerificationCodeService {
+public interface VerificationCodeService {
 	
 	/**
 	 * 重置邮箱
