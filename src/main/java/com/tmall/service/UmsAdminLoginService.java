@@ -1,5 +1,8 @@
 package com.tmall.service;
 
+import java.util.Map;
+
+import com.tmall.dto.UmsAdminUpdatePasswordParam;
 import com.tmall.dto.UserLoginParam;
 import com.tmall.model.UmsAdmin;
 
@@ -26,5 +29,12 @@ public interface UmsAdminLoginService {
 	 * @return 新token
 	 */
 	String refreshToken(String oldToken);
+	
+	/**
+	 * 修改密码
+	 * @param umsAdminUpdatePasswordParam 前端密码参数
+	 * @return
+	 */
+	Map<String, String> updatePassword(UmsAdminUpdatePasswordParam umsAdminUpdatePasswordParam);
 	
 }

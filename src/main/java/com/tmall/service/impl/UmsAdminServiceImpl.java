@@ -174,4 +174,9 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 		return 1;
 	}
 
+	@Override
+	public int updateUmsAdminIconByUsername(UmsAdmin umsAdmin) {
+		return umsAdminMapper.updateUmsAdminIconByUsername(umsAdmin);
+	}
+
 }

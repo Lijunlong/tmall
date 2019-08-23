@@ -10,6 +10,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import com.tmall.DemoApplicationTests;
+import com.tmall.util.CommonUtil;
 import com.tmall.util.MailUtil;
 
 public class MyTest extends DemoApplicationTests {
@@ -21,16 +22,19 @@ public class MyTest extends DemoApplicationTests {
 
 	@Autowired
 	private TemplateEngine templateEngine;
-
+	
 	@Test
+	public void testGetAddressByIp() {
+		String addressByIp = CommonUtil.getAddressByIp("218.88.127.142");
+		System.out.println(addressByIp);
+	}
+	
 	public void log() {
 		logger.info("日志测试");
 		logger.error("日志测试");
 		logger.debug("日志测试");
 	}
 	
-	
-	@Test
 	public void sendSimpleMail() {
 		String to = "190690229@qq.com";
 		String subject = "测试";
@@ -41,7 +45,6 @@ public class MyTest extends DemoApplicationTests {
 	/**
 	 * 发送一个HTML格式(富文本邮件)的邮件
 	 */
-	@Test
 	public void sendHTMLMail() {
 		String to = "190690229@qq.com";
 		String subject = "发送一个HTML格式(富文本邮件)的邮件，测试";
@@ -54,7 +57,6 @@ public class MyTest extends DemoApplicationTests {
 	/**
 	 * 发送带附件格式的邮件
 	 */
-	@Test
 	public void sendAttachmentMail() {
 		String to = "190690229@qq.com";
 		String subject = "测试";
@@ -65,7 +67,6 @@ public class MyTest extends DemoApplicationTests {
 	/**
 	 * 发送带静态资源的邮件
 	 */
-	@Test
 	public void sendInlineMail() {
 
 		String to = "190690229@qq.com";
@@ -78,7 +79,6 @@ public class MyTest extends DemoApplicationTests {
 	/**
 	 * 发送Thymeleaf模版消息
 	 */
-	@Test
 	public void sendTemplateMail() {
 		// 注意：Context 类是在org.thymeleaf.context.Context包下的。
 		String to = "190690229@qq.com";

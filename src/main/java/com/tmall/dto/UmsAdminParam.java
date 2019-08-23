@@ -86,5 +86,5 @@ public class UmsAdminParam {
 		return "UmsAdminParam [nickName=" + nickName + ", username=" + username + ", enabled=" + enabled + ", telphone="
 				+ telphone + ", email=" + email + ", dept=" + dept + ", job=" + job + ", roles=" + roles + "]";
 	}
-    
+	
 }

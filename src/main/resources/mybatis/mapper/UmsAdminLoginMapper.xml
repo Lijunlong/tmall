@@ -21,7 +21,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     id, username, password, icon, nick_name, email, note, telphone, enabled, login_time, create_time, update_time, 
-    creater, updater
+    creater, updater, ums_job_id, ums_deptment_id
   </sql>
   <select id="selectUserByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -38,4 +38,8 @@
     </set>
     where username = #{username,jdbcType=VARCHAR};
   </update>
+  <update id="updateUmsAdminPasswordById" parameterType="com.tmall.model.UmsAdmin">
+  	update ums_admin set password = #{password} where id = #{id}
+  </update>
+  
 </mapper>

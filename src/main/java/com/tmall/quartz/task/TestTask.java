@@ -19,4 +19,5 @@ public class TestTask {
     public void run1(String str){
     	logger.info("执行成功，参数为： {}" + str);
     }
+    
 }

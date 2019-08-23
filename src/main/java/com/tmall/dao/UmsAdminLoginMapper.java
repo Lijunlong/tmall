@@ -12,4 +12,6 @@ public interface UmsAdminLoginMapper {
     
 	int updateLoginTimeByUsername(UmsAdmin user);
 
+	int updateUmsAdminPasswordById(@Param("id")Long id,@Param("password")String password);
+
 }

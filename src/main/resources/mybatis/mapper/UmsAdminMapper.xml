@@ -108,6 +108,22 @@
 	WHERE id = #{id}
   </update>
   
+  <update id="updateUmsAdminIconByUsername" parameterType="com.tmall.model.UmsAdmin">
+  	UPDATE ums_admin 
+  	<trim prefix="SET" suffixOverrides=",">
+		<if test="icon != null">
+			icon = #{icon},
+		</if>
+		<if test="updater != null">
+			updater = #{updater},
+		</if>
+		<if test="updateTime != null">
+			update_time = #{updateTime},
+		</if>
+	</trim>
+	WHERE username = #{username}
+  </update>
+  
   <delete id="deleteUmsAdminById" parameterType="java.lang.Long">
   	DELETE FROM ums_admin WHERE id = #{id}
   </delete>

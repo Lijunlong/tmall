@@ -38,6 +38,13 @@ public class UmsAdminLog implements Serializable {
 	
 	@ApiModelProperty(value = "创建人")
 	private String creater;
+	
+	@ApiModelProperty(value = "ip地址详细信息")
+	private String address;
+
+	public UmsAdminLog() {
+		super();
+	}
 
 	public UmsAdminLog(String logType, Long time) {
 		super();
@@ -123,6 +130,14 @@ public class UmsAdminLog implements Serializable {
 
 	public void setCreater(String creater) {
 		this.creater = creater;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 }

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tmall.aop.log.Log;
 import com.tmall.common.api.CommonResult;
+import com.tmall.dto.UmsAdminParam;
+import com.tmall.dto.UmsAdminUpdatePasswordParam;
 import com.tmall.dto.UserLoginParam;
 import com.tmall.model.UmsAdmin;
 import com.tmall.service.UmsAdminLoginService;
@@ -33,7 +35,7 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/admin")
 public class UmsAdminLoginController {
 	@Autowired
-	private UmsAdminLoginService userService;
+	private UmsAdminLoginService umsAdminLoginService;
 	@Autowired
 	private UmsPermissionService umsPermissionService;
 	@Value("${jwt.tokenHeader}")
@@ -46,7 +48,7 @@ public class UmsAdminLoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public Object login(@RequestBody UserLoginParam userLoginParam, BindingResult result) {
-		String token = userService.login(userLoginParam.getUsername(), userLoginParam.getPassword());
+		String token = umsAdminLoginService.login(userLoginParam.getUsername(), userLoginParam.getPassword());
 		if (token == null) {
 			return CommonResult.validateFailed("用户名或密码错误");
 		}
@@ -61,7 +63,7 @@ public class UmsAdminLoginController {
 	@ResponseBody
 	public Object refreshToken(HttpServletRequest request) {
 		String token = request.getHeader(tokenHeader);
-		String refreshToken = userService.refreshToken(token);
+		String refreshToken = umsAdminLoginService.refreshToken(token);
 		if (refreshToken == null) {
 			return CommonResult.failed();
 		}
@@ -76,13 +78,18 @@ public class UmsAdminLoginController {
 	@ResponseBody
 	public Object getAdminInfo(Principal principal) {
 		String username = principal.getName();
-		UmsAdmin umsAdmin = userService.getUserByUsername(username);
+		UmsAdmin umsAdmin = umsAdminLoginService.getUserByUsername(username);
 		if (umsAdmin == null) {
 			return CommonResult.failed("获取当前登录用户信息失败，当前登录信息为空");
 		}else {
 			String[] umsPermissionName = umsPermissionService.getUmsPermissionNameByAdminId(umsAdmin.getId());
 			Map<String, Object> data = new HashMap<>();
 			data.put("username", umsAdmin.getUsername());
+			data.put("phone", umsAdmin.getTelphone());
+			data.put("email", umsAdmin.getEmail());
+			data.put("dept", umsAdmin.getDept());
+			data.put("job", umsAdmin.getJob());
+			data.put("createTime", umsAdmin.getCreateTime());
 			data.put("roles", umsPermissionName);
 			data.put("icon", umsAdmin.getIcon());
 			return CommonResult.success(data);
@@ -95,4 +102,18 @@ public class UmsAdminLoginController {
 	public Object logout() {
 		return CommonResult.success(null);
 	}
+	
+	@ApiOperation(value = "修改密码")
+	@RequestMapping(value = "/update_pass", method = RequestMethod.POST)
+	@ResponseBody
+	public Object updatePass(@RequestBody UmsAdminUpdatePasswordParam umsAdminUpdatePasswordParam) {
+		Map<String, String> map = umsAdminLoginService.updatePassword(umsAdminUpdatePasswordParam);
+		String errMsg = map.get("error");
+		if (errMsg != null && !"".equals(errMsg)) {
+			return CommonResult.failed(errMsg);
+		}else {
+			return CommonResult.success("密码修改成功");
+		}
+	}
+	
 }

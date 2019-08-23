@@ -1,5 +1,7 @@
 package com.tmall.service;
 
+import java.util.List;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 
 import com.tmall.model.UmsAdminLog;
@@ -14,5 +16,17 @@ public interface UmsAdminLogService {
 	 * @param log 日志信息
 	 */
 	void save(String username, String ip, ProceedingJoinPoint joinPoint, UmsAdminLog log);
+
+	List<UmsAdminLog> getLogs(Integer pageSize, Integer pageNum);
+
+	List<UmsAdminLog> getErrorLogs(Integer pageSize, Integer pageNum);
+	
+	/**
+	 * 查询当前用户操作日志
+	 * @param pageSize
+	 * @param pageNum
+	 * @return
+	 */
+	List<UmsAdminLog> getCurrentUserLogs(Integer pageSize, Integer pageNum);
 	
 }

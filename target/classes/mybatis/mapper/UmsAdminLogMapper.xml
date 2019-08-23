@@ -12,14 +12,31 @@
     <result column="time" jdbcType="BIGINT" property="time" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
   </resultMap>
   
-  <insert id="insertUmsAdminLog" parameterType="com.tmall.model.UmsAdminLog" useGeneratedKeys="true" keyColumn="id">
+  <select id="selectUmsAdminLogList" parameterType="com.tmall.model.UmsAdminLog" resultMap="BaseResultMap">
+ 	SELECT * FROM ums_admin_log
+	<where>
+		<if test="logType != null">
+			AND log_type = #{logType}
+		</if>
+		<if test="creater != null">
+			AND creater = #{creater}
+		</if>
+	</where>
+  </select>
+  
+  <insert id="insertUmsAdminLog" parameterType="com.tmall.model.UmsAdminLog" useGeneratedKeys="true" keyProperty="id">
   	INSERT INTO ums_admin_log (
   		description,exception_detail,log_type,method,params,request_ip,time,create_time,creater
   	) VALUES (
   		#{description},#{exceptionDetail},#{logType},#{method},#{params},#{requestIp},#{time},#{createTime},#{creater}
   	)
   </insert>
+  
+  <update id="updateUmsAdminLogAddressById" parameterType="com.tmall.model.UmsAdminLog">
+  	UPDATE ums_admin_log SET address = #{address} WHERE id = #{id}
+  </update>
   
 </mapper>

@@ -1,5 +1,6 @@
 package com.tmall.aspect;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
@@ -13,6 +14,7 @@ import com.tmall.service.UmsAdminLogService;
 import com.tmall.util.CommonUtil;
 import com.tmall.util.RequestHolder;
 import com.tmall.util.SecurityUtils;
+import com.tmall.util.ThrowableUtil;
 
 @Aspect
 @Component
@@ -47,9 +49,11 @@ public class LogAspect {
 		return result;
 	}
 
-	@AfterThrowing("pointcut()")
-	public void afterThrowing() {
-		System.out.println("---------------@AfterThrowing----------------");
+	@AfterThrowing(pointcut = "pointcut()", throwing = "e")
+	public void afterThrowing(JoinPoint joinPoint, Throwable e) {
+		UmsAdminLog log = new UmsAdminLog("ERROR", System.currentTimeMillis() - currentTime);
+		log.setExceptionDetail(ThrowableUtil.getStackTrace(e));
+		umsAdminLogService.save(getUsername(), CommonUtil.getIP(RequestHolder.getHttpServletRequest()),(ProceedingJoinPoint)joinPoint, log);
 	}
 	
 	public String getUsername() {

@@ -41,4 +41,11 @@ public interface UmsAdminService {
 	 * @return
 	 */
 	int delete(Long umsAdminId);
+	
+	/**
+	 * 通过用户名修改用户头像地址
+	 * @param umsAdmin
+	 * @return
+	 */
+	int updateUmsAdminIconByUsername(UmsAdmin umsAdmin);
 }
