@@ -21,6 +21,10 @@ public class UserLoginParam {
     @ApiModelProperty(value = "邮箱")
     @Email(message = "邮箱格式不合法")
     private String email;
+    @ApiModelProperty(value = "验证码code")
+    private String code;
+    @ApiModelProperty(value = "验证码uuid")
+    private String uuid;
 	public String getUsername() {
 		return username;
 	}
@@ -44,6 +48,19 @@ public class UserLoginParam {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getUuid() {
+		return uuid;
+	}
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 	@Override
 	public String toString() {

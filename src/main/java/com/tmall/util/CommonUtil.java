@@ -4,10 +4,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,7 +18,9 @@ import com.alibaba.fastjson.JSONObject;
  * 公共工具类 Created by Mr.Li on 2019/08/12
  */
 public class CommonUtil {
-
+	
+	public static final AtomicInteger atomicInteger = new AtomicInteger(0);//自增类
+	
 	/**
 	 * 去掉value为空的键值对
 	 * 
@@ -71,22 +73,29 @@ public class CommonUtil {
 	 * @return
 	 */
 	public static String getAddressByIp(String ip) {
-		String result = doGet("http://ip.taobao.com/service/getIpInfo.php?ip=" + ip, null);
-		if (result != null && !"".equals(result)) {
-			JSONObject obj = JSONObject.parseObject(result);
-			String code = obj.getString("code");
-			if ("0".equals(code)) {
-				JSONObject data = obj.getJSONObject("data");
-				return data.getString("country") + " | " + data.getString("region") + " | " + data.getString("city") + " | " + data.getString("isp");
-			}else {
-				return "IP地址有误";
+		String result = "";
+		try {
+			result = doGet("http://ip.taobao.com/service/getIpInfo.php?ip=" + ip, null);
+			if (result != null && !"".equals(result)) {
+				JSONObject obj = JSONObject.parseObject(result);
+				String code = obj.getString("code");
+				if ("0".equals(code)) {
+					JSONObject data = obj.getJSONObject("data");
+					result = data.getString("country") + " | " + data.getString("region") + " | " + data.getString("city") + " | " + data.getString("isp");
+				}else {
+					result = "IP地址有误";
+				}
 			}
-		}else {
-			return "";
+		} catch (IOException e) {
+			//如果是io异常，会默认调用三次此方法，知道返回正确结果集，超过三次不在调用
+			if (atomicInteger.getAndIncrement() < 3) {
+				getAddressByIp(ip);
+			}
 		}
+		return result;
 	}
 
-	public static String doGet(String urlStr, Map<String, Object> params) {
+	public static String doGet(String urlStr, Map<String, Object> params) throws IOException {
 		String jsonStr = "";
 		if (params != null) {
 			StringBuffer param = new StringBuffer();
@@ -102,31 +111,27 @@ public class CommonUtil {
 			}
 			urlStr += param;
 		}
-		try {
-			URL url = new URL(urlStr);
-			HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
-			// 设置连接属性
-			httpConn.setConnectTimeout(3000);
-			httpConn.setDoInput(true);
-			httpConn.setRequestMethod("GET");
-			// 获取相应码
-			int respCode = httpConn.getResponseCode();
-			if (respCode == 200) {
-				InputStream in = httpConn.getInputStream();
-				ByteArrayOutputStream out = new ByteArrayOutputStream();
-				byte[] buffer = new byte[1024];
-				int len = 0;
-				// 将输入流转移到内存输出流中
-				while ((len = in.read(buffer, 0, buffer.length)) != -1) {
-					out.write(buffer, 0, len);
-				}
-				// 将内存流转换为字符串
-				jsonStr = new String(out.toByteArray());
-				out.close();
-				in.close();
+		URL url = new URL(urlStr);
+		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+		// 设置连接属性
+		httpConn.setConnectTimeout(3000);
+		httpConn.setDoInput(true);
+		httpConn.setRequestMethod("GET");
+		// 获取相应码
+		int respCode = httpConn.getResponseCode();
+		if (respCode == 200) {
+			InputStream in = httpConn.getInputStream();
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			byte[] buffer = new byte[1024];
+			int len = 0;
+			// 将输入流转移到内存输出流中
+			while ((len = in.read(buffer, 0, buffer.length)) != -1) {
+				out.write(buffer, 0, len);
 			}
-		} catch (MalformedURLException e) {
-		} catch (IOException e) {
+			// 将内存流转换为字符串
+			jsonStr = new String(out.toByteArray());
+			out.close();
+			in.close();
 		}
 		return jsonStr;
 	}

@@ -1,6 +1,7 @@
 package com.tmall.controller.admin;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -71,6 +72,20 @@ public class UmsAdminController extends BaseController {
     public CommonResult delete(@PathVariable Long id) {
         int count = umsAdminService.delete(id);
         return CommonResult.success("删除用户成功");
+    }
+	
+	@Log("修改邮箱")
+	@ApiOperation("修改邮")
+    @RequestMapping(value = "/code/updateEmail/{code}", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult updateEmail(@PathVariable String code,@RequestBody UmsAdminParam umsAdminParam) {
+		Map<String, String> map = umsAdminService.updateEmail(code, umsAdminParam);
+		String errMsg = map.get("error");
+		if (errMsg != null && !"".equals(errMsg)) {
+			return CommonResult.failed(errMsg);
+		}else {
+			return CommonResult.success("修改邮箱成功");
+		}
     }
 	
 }

@@ -17,9 +17,17 @@ public interface VerificationCodeMapper {
 
 	/**
 	 * 添加验证码
-	 * @param verificationCodeParam
+	 * @param verificationCode
 	 * @return
 	 */
-	Long insertVerificationCode(VerificationCode verificationCodeParam);
+	Long insertVerificationCode(VerificationCode verificationCode);
+	
+	/**
+	 * 修改验证码状态
+	 * @param verificationCode
+	 * @return
+	 */
+	int updateVerificationCode(VerificationCode verificationCode);
+	
 
 }

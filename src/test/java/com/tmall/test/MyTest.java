@@ -1,6 +1,8 @@
 package com.tmall.test;
 
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +25,20 @@ public class MyTest extends DemoApplicationTests {
 	@Autowired
 	private TemplateEngine templateEngine;
 	
-	@Test
+	public void testTimerTask() {
+		System.out.println("开始");
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			
+			@Override
+			public void run() {
+				//延迟特定时间后执行该语句（public void run()的花括号里的语句）
+				System.out.println("测试");
+			}
+		}, 3000);//这里的数字3000意思是延迟3000毫秒
+		System.out.println("结束");
+	}
+	
 	public void testGetAddressByIp() {
 		String addressByIp = CommonUtil.getAddressByIp("218.88.127.142");
 		System.out.println(addressByIp);

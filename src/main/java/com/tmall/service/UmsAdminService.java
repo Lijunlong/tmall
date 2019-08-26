@@ -1,6 +1,7 @@
 package com.tmall.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.tmall.dto.UmsAdminParam;
 import com.tmall.model.UmsAdmin;
@@ -48,4 +49,14 @@ public interface UmsAdminService {
 	 * @return
 	 */
 	int updateUmsAdminIconByUsername(UmsAdmin umsAdmin);
+	
+	/**
+	 * 修改邮箱
+	 * @param code 邮箱验证码
+	 * @param umsAdminParam 前端邮箱验证参数（邮箱地址、密码）
+	 * @return
+	 */
+	Map<String, String> updateEmail(String code, UmsAdminParam umsAdminParam);
+	
+	
 }

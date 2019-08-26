@@ -20,6 +20,10 @@
     <result column="ums_deptment_id" jdbcType="BIGINT" property="umsDeptmentId" />
   </resultMap>
   
+  <select id="selectUserByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM ums_admin WHERE username = #{username,jdbcType=VARCHAR}
+  </select>
+  
   <select id="selectUmsAdmin" parameterType="com.tmall.model.UmsAdmin" resultMap="BaseResultMap">
     SELECT * FROM ums_admin
     <where>

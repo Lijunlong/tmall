@@ -26,4 +26,14 @@
 		)
 	</insert>
 	
+	<update id="updateVerificationCode" parameterType="com.tmall.model.VerificationCode">
+		UPDATE verification_code
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="status != null">
+				,status = #{status}
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+	
 </mapper>

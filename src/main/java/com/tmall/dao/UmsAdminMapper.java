@@ -25,5 +25,7 @@ public interface UmsAdminMapper {
 	List<UmsAdmin> selectUmsAdminLikeUmsAdmin(@Param("umsAdmin")UmsAdmin umsAdmin, @Param("deptIds")List<Long> deptIds);
 
 	int updateUmsAdminIconByUsername(UmsAdmin umsAdmin);
+	
+	List<UmsAdmin> selectUserByUsername(@Param("username")String username);
 
 }

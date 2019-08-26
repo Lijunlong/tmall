@@ -27,6 +27,8 @@ public class UmsAdminParam {
     private String telphone;
     @ApiModelProperty(value = "邮箱", required = true)
     private String email;
+    @ApiModelProperty(value = "密码")
+    private String password;
     @ApiModelProperty(value = "部门表", required = true)
     private UmsDepartment dept;
     @ApiModelProperty(value = "岗位表", required = true)
@@ -80,6 +82,12 @@ public class UmsAdminParam {
 	}
 	public void setRoles(List<UmsRole> roles) {
 		this.roles = roles;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	@Override
 	public String toString() {

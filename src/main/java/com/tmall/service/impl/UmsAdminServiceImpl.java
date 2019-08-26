@@ -2,7 +2,9 @@ package com.tmall.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,15 @@ import com.tmall.model.UmsAdminRoleRelation;
 import com.tmall.model.UmsDepartment;
 import com.tmall.model.UmsJob;
 import com.tmall.model.UmsRole;
+import com.tmall.model.VerificationCode;
 import com.tmall.service.UmsAdminRoleRelationService;
 import com.tmall.service.UmsAdminService;
 import com.tmall.service.UmsDepartmentService;
 import com.tmall.service.UmsJobService;
 import com.tmall.service.UmsRoleService;
+import com.tmall.service.VerificationCodeService;
 import com.tmall.util.Constant;
+import com.tmall.util.SecurityUtils;
 
 @Service
 public class UmsAdminServiceImpl implements UmsAdminService {
@@ -39,6 +44,8 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 	private UmsAdminRoleRelationService umsAdminRoleRelationService;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	@Autowired
+	private VerificationCodeService verificationCodeService;
 	
 	@Override
 	public List<UmsAdmin> getUserList(Long deptId, String username, String email,Integer enabled, Integer pageSize, Integer pageNum) {
@@ -177,6 +184,40 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 	@Override
 	public int updateUmsAdminIconByUsername(UmsAdmin umsAdmin) {
 		return umsAdminMapper.updateUmsAdminIconByUsername(umsAdmin);
+	}
+
+	@Override
+	public Map<String, String> updateEmail(String code, UmsAdminParam umsAdminParam) {
+		Map<String, String> map = new HashMap<String, String>();
+		//验证邮箱验证码是否有效
+		VerificationCode verificationCode = verificationCodeService.selectValidVerificationCodeByTypeAndValueAndScenes("email", umsAdminParam.getEmail(), Constant.RESET_MAIL);
+		if (verificationCode == null) {
+			map.put("error", "验证码已失效，请重新生成验证码");
+		}else {
+			if (code.equalsIgnoreCase(verificationCode.getCode())) {
+				//验证码有效，验证密码
+				List<UmsAdmin> umsAdminList = umsAdminMapper.selectUserByUsername(SecurityUtils.getUsername());
+				if (umsAdminList != null && umsAdminList.size() > 0) {
+					UmsAdmin umsAdmin = umsAdminList.get(0);
+					if (passwordEncoder.matches(umsAdminParam.getPassword(), umsAdmin.getPassword())) {
+						map.put("error", "");
+						UmsAdmin umsAdminSearchParam = new UmsAdmin();
+						umsAdminSearchParam.setId(umsAdmin.getId());
+						umsAdminSearchParam.setEmail(umsAdminParam.getEmail());
+						//修改邮箱地址
+						umsAdminMapper.updateUmsAdmin(umsAdminSearchParam);
+					}else {
+						//密码不正确
+						map.put("error", "密码错误");
+					}
+				}
+			}else {
+				//验证码无效
+				map.put("error", "验证码错误");
+			}
+			
+		}
+		return map;
 	}
 
 }
