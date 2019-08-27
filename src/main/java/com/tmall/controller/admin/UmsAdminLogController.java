@@ -33,18 +33,20 @@ public class UmsAdminLogController extends BaseController {
 	@ApiOperation("查询操作日志")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult getLogs(@RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+    public CommonResult getLogs(String creater,String ip,String description,
+    							@RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
 								@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
-		List<UmsAdminLog> logList = umsAdminLogService.getLogs(pageSize,pageNum);
+		List<UmsAdminLog> logList = umsAdminLogService.getLogs(creater,ip,description,pageSize,pageNum);
         return CommonResult.success(CommonPage.restPage(logList));
     }
 	
 	@ApiOperation("查询异常日志")
     @RequestMapping(value = "/error/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult getErrorLogs(@RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+    public CommonResult getErrorLogs(String creater,String ip,String description,
+    								 @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
 									 @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
-		List<UmsAdminLog> errorLogList = umsAdminLogService.getErrorLogs(pageSize,pageNum);
+		List<UmsAdminLog> errorLogList = umsAdminLogService.getErrorLogs(creater,ip,description,pageSize,pageNum);
         return CommonResult.success(CommonPage.restPage(errorLogList));
     }
 	

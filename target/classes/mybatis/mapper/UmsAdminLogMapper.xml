@@ -25,6 +25,23 @@
 			AND creater = #{creater}
 		</if>
 	</where>
+	ORDER BY createTime DESC
+  </select>
+  
+  <select id="selectUmsAdminLogListLikeUmsAdminLog" parameterType="com.tmall.model.UmsAdminLog" resultMap="BaseResultMap">
+ 	SELECT * FROM ums_admin_log
+	<where>
+		<if test="creater != null">
+			AND creater = #{creater}
+		</if>
+		<if test="requestIp != null">
+			AND request_ip = #{requestIp}
+		</if>
+		<if test="description != null">
+			AND description LIKE CONCAT('%',#{description},'%')
+		</if>
+	</where>
+	ORDER BY createTime DESC
   </select>
   
   <insert id="insertUmsAdminLog" parameterType="com.tmall.model.UmsAdminLog" useGeneratedKeys="true" keyProperty="id">

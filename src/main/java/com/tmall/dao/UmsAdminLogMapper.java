@@ -10,6 +10,8 @@ public interface UmsAdminLogMapper {
 
 	List<UmsAdminLog> selectUmsAdminLogList(UmsAdminLog umsAdminLog);
 
+	List<UmsAdminLog> selectUmsAdminLogListLikeUmsAdminLog(UmsAdminLog umsAdminLog);
+	
 	int updateUmsAdminLogAddressById(UmsAdminLog umsAdminLog);
 
 }

@@ -16,10 +16,28 @@ public interface UmsAdminLogService {
 	 * @param log 日志信息
 	 */
 	void save(String username, String ip, ProceedingJoinPoint joinPoint, UmsAdminLog log);
-
-	List<UmsAdminLog> getLogs(Integer pageSize, Integer pageNum);
-
-	List<UmsAdminLog> getErrorLogs(Integer pageSize, Integer pageNum);
+	
+	/**
+	 * 获取操作日志
+	 * @param creater 操作人
+	 * @param ip IP地址
+	 * @param description 描述
+	 * @param pageSize
+	 * @param pageNum
+	 * @return
+	 */
+	List<UmsAdminLog> getLogs(String creater, String ip, String description, Integer pageSize, Integer pageNum);
+	
+	/**
+	 * 获取异常日志
+	 * @param creater 操作人
+	 * @param ip IP地址
+	 * @param description 描述
+	 * @param pageSize
+	 * @param pageNum
+	 * @return
+	 */
+	List<UmsAdminLog> getErrorLogs(String creater, String ip, String description, Integer pageSize, Integer pageNum);
 	
 	/**
 	 * 查询当前用户操作日志

@@ -73,22 +73,28 @@ public class UmsAdminLogServiceImpl implements UmsAdminLogService {
 	}
 
 	@Override
-	public List<UmsAdminLog> getLogs(Integer pageSize, Integer pageNum) {
+	public List<UmsAdminLog> getLogs(String creater, String ip, String description, Integer pageSize, Integer pageNum) {
 		UmsAdminLog umsAdminLog = new UmsAdminLog();
 		umsAdminLog.setLogType("INFO");
+		umsAdminLog.setCreater(creater);
+		umsAdminLog.setRequestIp(ip);
+		umsAdminLog.setDescription(description);
 		//获取日志列表
 		PageHelper.startPage(pageNum, pageSize);
-		List<UmsAdminLog> umsAdminLogList = umsAdminLogMapper.selectUmsAdminLogList(umsAdminLog);
+		List<UmsAdminLog> umsAdminLogList = umsAdminLogMapper.selectUmsAdminLogListLikeUmsAdminLog(umsAdminLog);
 		return umsAdminLogList;
 	}
 
 	@Override
-	public List<UmsAdminLog> getErrorLogs(Integer pageSize, Integer pageNum) {
+	public List<UmsAdminLog> getErrorLogs(String creater, String ip, String description, Integer pageSize, Integer pageNum) {
 		UmsAdminLog umsAdminLog = new UmsAdminLog();
 		umsAdminLog.setLogType("ERROR");
+		umsAdminLog.setCreater(creater);
+		umsAdminLog.setRequestIp(ip);
+		umsAdminLog.setDescription(description);
 		//获取日志列表
 		PageHelper.startPage(pageNum, pageSize);
-		List<UmsAdminLog> umsAdminLogList = umsAdminLogMapper.selectUmsAdminLogList(umsAdminLog);
+		List<UmsAdminLog> umsAdminLogList = umsAdminLogMapper.selectUmsAdminLogListLikeUmsAdminLog(umsAdminLog);
 		return umsAdminLogList;
 	}
 	
