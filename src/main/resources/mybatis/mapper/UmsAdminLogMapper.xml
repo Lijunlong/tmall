@@ -25,7 +25,7 @@
 			AND creater = #{creater}
 		</if>
 	</where>
-	ORDER BY createTime DESC
+	ORDER BY create_time DESC
   </select>
   
   <select id="selectUmsAdminLogListLikeUmsAdminLog" parameterType="com.tmall.model.UmsAdminLog" resultMap="BaseResultMap">
@@ -41,7 +41,7 @@
 			AND description LIKE CONCAT('%',#{description},'%')
 		</if>
 	</where>
-	ORDER BY createTime DESC
+	ORDER BY create_time DESC
   </select>
   
   <insert id="insertUmsAdminLog" parameterType="com.tmall.model.UmsAdminLog" useGeneratedKeys="true" keyProperty="id">
