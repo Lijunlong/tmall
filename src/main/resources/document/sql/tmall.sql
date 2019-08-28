@@ -11,7 +11,7 @@
  Target Server Version : 80011
  File Encoding         : 65001
 
- Date: 21/08/2019 17:37:33
+ Date: 28/08/2019 15:30:35
 */
 
 SET NAMES utf8mb4;
@@ -40,7 +40,7 @@ INSERT INTO `pms_brand` VALUES (4, '苹果');
 -- ----------------------------
 DROP TABLE IF EXISTS `pms_product`;
 CREATE TABLE `pms_product`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品名称',
   `pic` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品图片地址',
   `product_sn` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '货号',
@@ -127,7 +127,7 @@ CREATE TABLE `quartz_job`  (
 -- ----------------------------
 -- Records of quartz_job
 -- ----------------------------
-INSERT INTO `quartz_job` VALUES (4, 'testTask', '0/5 * * * * ? ', 1, '测试', 'run', '', '测试', '2019-08-21 02:53:04');
+INSERT INTO `quartz_job` VALUES (4, 'testTask', '0/5 * * * * ? ', 1, '测试', 'run', '', '测试', '2019-08-22 06:13:57');
 
 -- ----------------------------
 -- Table structure for quartz_job_log
@@ -145,7 +145,7 @@ CREATE TABLE `quartz_job_log`  (
   `time` bigint(20) NULL DEFAULT NULL COMMENT '耗时（毫秒）',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 909 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 983 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of quartz_job_log
@@ -168,6 +168,78 @@ INSERT INTO `quartz_job_log` VALUES (907, '测试', 'testTask', 'run', '', '0/5 
 INSERT INTO `quartz_job_log` VALUES (908, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-16 10:08:08');
 INSERT INTO `quartz_job_log` VALUES (909, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 7, '2019-08-21 02:53:01');
 INSERT INTO `quartz_job_log` VALUES (910, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-21 02:53:02');
+INSERT INTO `quartz_job_log` VALUES (911, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 19, '2019-08-22 05:49:54');
+INSERT INTO `quartz_job_log` VALUES (912, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 3, '2019-08-22 05:49:55');
+INSERT INTO `quartz_job_log` VALUES (913, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:50:00');
+INSERT INTO `quartz_job_log` VALUES (914, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:50:05');
+INSERT INTO `quartz_job_log` VALUES (915, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:50:10');
+INSERT INTO `quartz_job_log` VALUES (916, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:50:15');
+INSERT INTO `quartz_job_log` VALUES (917, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:50:20');
+INSERT INTO `quartz_job_log` VALUES (918, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:50:25');
+INSERT INTO `quartz_job_log` VALUES (919, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:50:30');
+INSERT INTO `quartz_job_log` VALUES (920, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:50:35');
+INSERT INTO `quartz_job_log` VALUES (921, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:50:40');
+INSERT INTO `quartz_job_log` VALUES (922, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:50:45');
+INSERT INTO `quartz_job_log` VALUES (923, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:50:50');
+INSERT INTO `quartz_job_log` VALUES (924, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:50:55');
+INSERT INTO `quartz_job_log` VALUES (925, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 6, '2019-08-22 05:51:00');
+INSERT INTO `quartz_job_log` VALUES (926, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 4, '2019-08-22 05:51:05');
+INSERT INTO `quartz_job_log` VALUES (927, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:51:10');
+INSERT INTO `quartz_job_log` VALUES (928, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:51:15');
+INSERT INTO `quartz_job_log` VALUES (929, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:51:20');
+INSERT INTO `quartz_job_log` VALUES (930, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:51:25');
+INSERT INTO `quartz_job_log` VALUES (931, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:51:30');
+INSERT INTO `quartz_job_log` VALUES (932, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:51:35');
+INSERT INTO `quartz_job_log` VALUES (933, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 12, '2019-08-22 05:51:40');
+INSERT INTO `quartz_job_log` VALUES (934, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 4, '2019-08-22 05:51:45');
+INSERT INTO `quartz_job_log` VALUES (935, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:51:50');
+INSERT INTO `quartz_job_log` VALUES (936, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:51:55');
+INSERT INTO `quartz_job_log` VALUES (937, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 11, '2019-08-22 05:52:00');
+INSERT INTO `quartz_job_log` VALUES (938, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:52:05');
+INSERT INTO `quartz_job_log` VALUES (939, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:52:10');
+INSERT INTO `quartz_job_log` VALUES (940, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:52:15');
+INSERT INTO `quartz_job_log` VALUES (941, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:52:20');
+INSERT INTO `quartz_job_log` VALUES (942, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:52:25');
+INSERT INTO `quartz_job_log` VALUES (943, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:52:30');
+INSERT INTO `quartz_job_log` VALUES (944, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 6, '2019-08-22 05:53:15');
+INSERT INTO `quartz_job_log` VALUES (945, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:53:20');
+INSERT INTO `quartz_job_log` VALUES (946, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 0, '2019-08-22 05:53:25');
+INSERT INTO `quartz_job_log` VALUES (947, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:53:30');
+INSERT INTO `quartz_job_log` VALUES (948, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 3, '2019-08-22 05:53:35');
+INSERT INTO `quartz_job_log` VALUES (949, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 0, '2019-08-22 05:53:40');
+INSERT INTO `quartz_job_log` VALUES (950, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:53:45');
+INSERT INTO `quartz_job_log` VALUES (951, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:53:50');
+INSERT INTO `quartz_job_log` VALUES (952, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:53:55');
+INSERT INTO `quartz_job_log` VALUES (953, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 10, '2019-08-22 05:54:00');
+INSERT INTO `quartz_job_log` VALUES (954, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:54:05');
+INSERT INTO `quartz_job_log` VALUES (955, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:54:10');
+INSERT INTO `quartz_job_log` VALUES (956, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:54:15');
+INSERT INTO `quartz_job_log` VALUES (957, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:54:20');
+INSERT INTO `quartz_job_log` VALUES (958, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:54:25');
+INSERT INTO `quartz_job_log` VALUES (959, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 6, '2019-08-22 05:54:30');
+INSERT INTO `quartz_job_log` VALUES (960, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 0, '2019-08-22 05:54:35');
+INSERT INTO `quartz_job_log` VALUES (961, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:54:40');
+INSERT INTO `quartz_job_log` VALUES (962, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 6, '2019-08-22 05:55:20');
+INSERT INTO `quartz_job_log` VALUES (963, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 6, '2019-08-22 05:55:51');
+INSERT INTO `quartz_job_log` VALUES (964, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:55:55');
+INSERT INTO `quartz_job_log` VALUES (965, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 9, '2019-08-22 05:56:00');
+INSERT INTO `quartz_job_log` VALUES (966, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 4, '2019-08-22 05:56:16');
+INSERT INTO `quartz_job_log` VALUES (967, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:56:20');
+INSERT INTO `quartz_job_log` VALUES (968, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 0, '2019-08-22 05:56:25');
+INSERT INTO `quartz_job_log` VALUES (969, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 05:56:30');
+INSERT INTO `quartz_job_log` VALUES (970, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 05:56:35');
+INSERT INTO `quartz_job_log` VALUES (971, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 20, '2019-08-22 06:11:05');
+INSERT INTO `quartz_job_log` VALUES (972, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 06:11:10');
+INSERT INTO `quartz_job_log` VALUES (973, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 06:11:15');
+INSERT INTO `quartz_job_log` VALUES (974, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 3, '2019-08-22 06:11:20');
+INSERT INTO `quartz_job_log` VALUES (975, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 06:11:25');
+INSERT INTO `quartz_job_log` VALUES (976, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 2, '2019-08-22 06:11:30');
+INSERT INTO `quartz_job_log` VALUES (977, '测试', 'testTask', 'run', '11', '0/5 * * * * ? ', 1, 'java.lang.NoSuchMethodException: com.tmall.quartz.task.TestTask.run(java.lang.String)\r\n	at java.lang.Class.getDeclaredMethod(Class.java:2130)\r\n	at com.tmall.quartz.util.QuartzRunnable.<init>(QuartzRunnable.java:30)\r\n	at com.tmall.quartz.util.ExecutionJob.executeInternal(ExecutionJob.java:47)\r\n	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)\r\n	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)\r\n	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)\r\n', 5, '2019-08-22 06:11:51');
+INSERT INTO `quartz_job_log` VALUES (978, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 06:13:47');
+INSERT INTO `quartz_job_log` VALUES (979, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 06:13:48');
+INSERT INTO `quartz_job_log` VALUES (980, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 12, '2019-08-22 06:13:50');
+INSERT INTO `quartz_job_log` VALUES (981, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 1, '2019-08-22 06:13:54');
+INSERT INTO `quartz_job_log` VALUES (982, '测试', 'testTask', 'run', '', '0/5 * * * * ? ', 0, NULL, 6, '2019-08-22 06:13:56');
 
 -- ----------------------------
 -- Table structure for ums_admin
@@ -191,13 +263,39 @@ CREATE TABLE `ums_admin`  (
   `ums_job_id` bigint(20) NULL DEFAULT NULL COMMENT '岗位id',
   `ums_deptment_id` bigint(20) NULL DEFAULT NULL COMMENT '部门id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_admin
 -- ----------------------------
-INSERT INTO `ums_admin` VALUES (1, 'admin', '$2a$10$4XqjamdaivwxoH6ovutK4OU15n6r.xE/JJ8d5jGDtAhJMVbRGI6be', 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3357786243,3135716437&fm=26&gp=0.jpg', '系统管理员', '8888888@qq.com', NULL, '15825898888', 1, '2019-08-21 06:51:21', '2019-07-26 15:53:07', '2019-08-21 08:29:09', '系统管理员', 'admin', 1, 1);
-INSERT INTO `ums_admin` VALUES (7, 'test', '$2a$10$BzwTgS537hCeI2iXdGDnOObLq9LrUF39Vc0JgnoEYmAXrAYleppPC', NULL, '普通管理员', '8888888@qq.com', NULL, '13520962818', 1, '2019-08-21 06:51:09', '2019-08-21 05:10:14', '2019-08-21 08:31:51', NULL, 'admin', 5, 2);
+INSERT INTO `ums_admin` VALUES (1, 'admin', '$2a$10$4XqjamdaivwxoH6ovutK4OU15n6r.xE/JJ8d5jGDtAhJMVbRGI6be', 'http://127.0.0.1:9092/tmall/upload/20190826153740海鸥.jpg', '系统管理员', '190690229@qq.com', NULL, '15825898888', 1, '2019-08-27 14:18:16', '2019-07-26 15:53:07', '2019-08-26 15:37:40', '系统管理员', 'admin', 1, 1);
+INSERT INTO `ums_admin` VALUES (7, 'test', '$2a$10$EeUeZQZ01YilMr0GBUdhAOoTcqwdMejpOnoK8TUjjpS73dIZsM.ru', 'http://127.0.0.1:9092/tmall/upload/20190823144757baidu.png', '普通管理员', '8888888@qq.com', NULL, '13520962818', 1, '2019-08-27 14:17:57', '2019-08-21 05:10:14', '2019-08-26 15:48:35', NULL, 'admin', 5, 2);
+
+-- ----------------------------
+-- Table structure for ums_admin_log
+-- ----------------------------
+DROP TABLE IF EXISTS `ums_admin_log`;
+CREATE TABLE `ums_admin_log`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
+  `exception_detail` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '异常详情',
+  `log_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '日志类型',
+  `method` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '方法',
+  `params` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '参数',
+  `request_ip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '请求ip',
+  `time` bigint(20) NULL DEFAULT NULL COMMENT '耗时',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `creater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'ip地址详情信息',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 148 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ums_admin_log
+-- ----------------------------
+INSERT INTO `ums_admin_log` VALUES (119, '用户登录', 'java.lang.ClassCastException: com.tmall.dto.UserLoginParam cannot be cast to java.lang.Boolean\r\n	at com.tmall.aspect.LogAspect.around(LogAspect.java:43)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:498)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:644)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:633)\r\n	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:175)\r\n	at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:62)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:175)\r\n	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)\r\n	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)\r\n	at com.tmall.controller.admin.UmsAdminLoginController$$EnhancerBySpringCGLIB$$152a70f3.login(<generated>)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:498)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)\r\n	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:892)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)\r\n	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)\r\n	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1039)\r\n	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)\r\n	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)\r\n	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)\r\n	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter.doFilterInternal(HttpTraceFilter.java:88)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)\r\n	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:127)\r\n	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91)\r\n	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\r\n	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)\r\n	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\r\n	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)\r\n	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\r\n	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)\r\n	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\r\n	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:170)\r\n	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\r\n	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)\r\n	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\r\n	at com.tmall.component.JwtAuthenticationTokenFilter.doFilterInternal(JwtAuthenticationTokenFilter.java:57)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)\r\n	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\r\n	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)\r\n	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\r\n	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)\r\n	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\r\n	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)\r\n	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\r\n	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)\r\n	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)\r\n	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)\r\n	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)\r\n	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)\r\n	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:114)\r\n	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:104)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:109)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)\r\n	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)\r\n	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)\r\n	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)\r\n	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)\r\n	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)\r\n	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)\r\n	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)\r\n	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)\r\n	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)\r\n	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)\r\n	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)\r\n	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\r\n	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\r\n	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)\r\n	at java.lang.Thread.run(Thread.java:748)\r\n', 'ERROR', 'com.tmall.controller.admin.UmsAdminLoginController.login()', '{ userLoginParam: UserLoginParam [username=admin, password= ******, nickName=null, email=null] result: org.springframework.validation.BeanPropertyBindingResult: 0 errors }', '127.0.0.1', 1741, '2019-08-27 10:30:09', 'admin', 'XX | XX | 内网IP | 内网IP');
+INSERT INTO `ums_admin_log` VALUES (146, '用户登录', NULL, 'INFO', 'com.tmall.controller.admin.UmsAdminLoginController.login()', '{ userLoginParam: UserLoginParam [username=test, password= ******, nickName=null, email=null] result: org.springframework.validation.BeanPropertyBindingResult: 0 errors }', '127.0.0.1', 178, '2019-08-27 14:17:57', 'test', 'XX | XX | 内网IP | 内网IP');
+INSERT INTO `ums_admin_log` VALUES (147, '用户登录', NULL, 'INFO', 'com.tmall.controller.admin.UmsAdminLoginController.login()', '{ userLoginParam: UserLoginParam [username=admin, password= ******, nickName=null, email=null] result: org.springframework.validation.BeanPropertyBindingResult: 0 errors }', '127.0.0.1', 176, '2019-08-27 14:18:16', 'admin', 'XX | XX | 内网IP | 内网IP');
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation
@@ -208,13 +306,13 @@ CREATE TABLE `ums_admin_role_relation`  (
   `admin_id` bigint(20) NULL DEFAULT NULL,
   `role_id` bigint(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户和角色关系表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 73 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户和角色关系表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_admin_role_relation
 -- ----------------------------
 INSERT INTO `ums_admin_role_relation` VALUES (64, 1, 1);
-INSERT INTO `ums_admin_role_relation` VALUES (68, 7, 8);
+INSERT INTO `ums_admin_role_relation` VALUES (72, 7, 8);
 
 -- ----------------------------
 -- Table structure for ums_department
@@ -286,7 +384,7 @@ CREATE TABLE `ums_menu`  (
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
   `hidden` int(255) NULL DEFAULT 1 COMMENT '是否隐藏，1显示，0隐藏',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_menu
@@ -295,18 +393,21 @@ INSERT INTO `ums_menu` VALUES (1, '商品', 0, 1, NULL, 'icon', 'pms', 1, 2, '20
 INSERT INTO `ums_menu` VALUES (2, '商品列表', 1, 1, 'pms/product/index', 'index', 'product', 1, 2, '2019-08-09 13:04:05', 1);
 INSERT INTO `ums_menu` VALUES (3, '添加商品', 1, 1, 'pms/product/add', 'icon', 'addProduct', 1, 3, '2019-08-09 13:04:50', 1);
 INSERT INTO `ums_menu` VALUES (4, '商品分类', 1, 1, 'pms/productCate', 'icon', 'productCate', 1, 4, '2019-08-09 13:05:39', 1);
-INSERT INTO `ums_menu` VALUES (5, '系统工具', 0, 1, '', 'icon', 'sys-tools', 1, 3, '2019-08-09 13:06:49', 1);
+INSERT INTO `ums_menu` VALUES (5, '系统工具', 0, 1, '', 'icon', 'sys-tools', 1, 4, '2019-08-09 13:06:49', 1);
 INSERT INTO `ums_menu` VALUES (6, '定时任务', 5, 1, 'tools/timing/index', 'icon', 'timing', 1, 2, '2019-08-09 13:07:40', 1);
 INSERT INTO `ums_menu` VALUES (7, '项目地址', 0, 0, '', 'icon', 'https://github.com', 1, 1, '2019-08-09 13:08:55', 1);
 INSERT INTO `ums_menu` VALUES (8, '添加商品分类', 1, 1, 'pms/productCate/add', 'icon', 'addProductCate', 1, 1, '2019-08-11 21:49:56', 0);
 INSERT INTO `ums_menu` VALUES (9, '修改商品分类', 1, 1, 'pms/productCate/update', 'icon', 'updateProductCate', 1, 1, '2019-08-11 21:50:26', 0);
-INSERT INTO `ums_menu` VALUES (10, '系统管理', 0, 1, NULL, 'system', 'system', 1, 4, '2019-08-11 22:17:02', 1);
+INSERT INTO `ums_menu` VALUES (10, '系统管理', 0, 1, NULL, 'system', 'system', 1, 5, '2019-08-11 22:17:02', 1);
 INSERT INTO `ums_menu` VALUES (11, '用户管理', 10, 1, 'system/user/index', 'user', 'user', 1, 2, '2019-08-11 22:22:48', 1);
 INSERT INTO `ums_menu` VALUES (12, '权限管理', 10, 1, 'system/permission/index', 'permission', 'permission', 1, 4, '2019-08-15 11:14:50', 1);
 INSERT INTO `ums_menu` VALUES (13, '菜单管理', 10, 1, 'system/menu/index', 'menu', 'menu', 1, 5, '2019-08-15 15:32:28', 1);
 INSERT INTO `ums_menu` VALUES (19, '部门管理', 10, 1, 'system/dept/index', 'icon', 'dept', 1, 6, '2019-08-16 10:14:42', 1);
 INSERT INTO `ums_menu` VALUES (20, '岗位管理', 10, 1, 'system/job/index', 'icon', 'job', 1, 7, '2019-08-16 15:35:36', 1);
 INSERT INTO `ums_menu` VALUES (24, '角色管理', 10, 1, 'system/role/index', 'icon', 'role', 1, 3, '2019-08-19 08:15:40', 1);
+INSERT INTO `ums_menu` VALUES (25, '系统监控', 0, 1, '', 'icon', 'monitor', 1, 3, '2019-08-22 09:18:23', 1);
+INSERT INTO `ums_menu` VALUES (26, '操作日志', 25, 1, 'monitor/log/index', 'icon', 'logs', 1, 1, '2019-08-22 09:20:06', 1);
+INSERT INTO `ums_menu` VALUES (27, '异常日志', 25, 1, 'monitor/log/errorLog', 'icon', 'errorLog', 1, 2, '2019-08-23 02:07:02', 1);
 
 -- ----------------------------
 -- Table structure for ums_permission
@@ -327,7 +428,7 @@ CREATE TABLE `ums_permission`  (
   `creater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
   `updater` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户权限表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 47 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户权限表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_permission
@@ -381,13 +482,13 @@ CREATE TABLE `ums_role`  (
   `data_scope` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '数据权限',
   `level` int(255) NULL DEFAULT NULL COMMENT '级别',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户角色表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户角色表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_role
 -- ----------------------------
 INSERT INTO `ums_role` VALUES (1, '超级管理员', '超级管理员', 1, 0, '2019-08-09 12:54:25', '2019-08-21 02:04:07', 'SYS', NULL, '自定义', 1);
-INSERT INTO `ums_role` VALUES (8, '普通管理员', '普通管理员', 1, 0, '2019-08-21 02:57:07', NULL, NULL, NULL, '自定义', 3);
+INSERT INTO `ums_role` VALUES (8, '普通管理员', '普通管理员', 1, 0, '2019-08-21 02:57:07', '2019-08-23 05:35:48', NULL, 'admin', '自定义', 3);
 
 -- ----------------------------
 -- Table structure for ums_role_department_relation
@@ -398,13 +499,13 @@ CREATE TABLE `ums_role_department_relation`  (
   `role_id` bigint(20) NULL DEFAULT NULL COMMENT '角色id',
   `department_id` bigint(20) NULL DEFAULT NULL COMMENT '部门id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_role_department_relation
 -- ----------------------------
 INSERT INTO `ums_role_department_relation` VALUES (6, 1, 1);
-INSERT INTO `ums_role_department_relation` VALUES (8, 8, 1);
+INSERT INTO `ums_role_department_relation` VALUES (16, 8, 1);
 
 -- ----------------------------
 -- Table structure for ums_role_menu_relation
@@ -415,27 +516,37 @@ CREATE TABLE `ums_role_menu_relation`  (
   `role_id` bigint(20) NULL DEFAULT NULL COMMENT '角色id',
   `menu_id` bigint(20) NULL DEFAULT NULL COMMENT '菜单id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 93 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 183 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_role_menu_relation
 -- ----------------------------
-INSERT INTO `ums_role_menu_relation` VALUES (1, 1, 1);
-INSERT INTO `ums_role_menu_relation` VALUES (2, 1, 2);
-INSERT INTO `ums_role_menu_relation` VALUES (3, 1, 3);
-INSERT INTO `ums_role_menu_relation` VALUES (4, 1, 4);
-INSERT INTO `ums_role_menu_relation` VALUES (5, 1, 5);
-INSERT INTO `ums_role_menu_relation` VALUES (6, 1, 6);
-INSERT INTO `ums_role_menu_relation` VALUES (7, 1, 7);
-INSERT INTO `ums_role_menu_relation` VALUES (13, 1, 8);
-INSERT INTO `ums_role_menu_relation` VALUES (14, 1, 9);
-INSERT INTO `ums_role_menu_relation` VALUES (15, 1, 10);
-INSERT INTO `ums_role_menu_relation` VALUES (16, 1, 11);
-INSERT INTO `ums_role_menu_relation` VALUES (17, 1, 12);
-INSERT INTO `ums_role_menu_relation` VALUES (18, 1, 13);
-INSERT INTO `ums_role_menu_relation` VALUES (19, 1, 19);
-INSERT INTO `ums_role_menu_relation` VALUES (20, 1, 20);
-INSERT INTO `ums_role_menu_relation` VALUES (21, 1, 24);
+INSERT INTO `ums_role_menu_relation` VALUES (139, 8, 10);
+INSERT INTO `ums_role_menu_relation` VALUES (140, 8, 11);
+INSERT INTO `ums_role_menu_relation` VALUES (141, 8, 12);
+INSERT INTO `ums_role_menu_relation` VALUES (142, 8, 13);
+INSERT INTO `ums_role_menu_relation` VALUES (143, 8, 19);
+INSERT INTO `ums_role_menu_relation` VALUES (144, 8, 20);
+INSERT INTO `ums_role_menu_relation` VALUES (145, 8, 24);
+INSERT INTO `ums_role_menu_relation` VALUES (164, 1, 1);
+INSERT INTO `ums_role_menu_relation` VALUES (165, 1, 2);
+INSERT INTO `ums_role_menu_relation` VALUES (166, 1, 3);
+INSERT INTO `ums_role_menu_relation` VALUES (167, 1, 4);
+INSERT INTO `ums_role_menu_relation` VALUES (168, 1, 8);
+INSERT INTO `ums_role_menu_relation` VALUES (169, 1, 9);
+INSERT INTO `ums_role_menu_relation` VALUES (170, 1, 5);
+INSERT INTO `ums_role_menu_relation` VALUES (171, 1, 6);
+INSERT INTO `ums_role_menu_relation` VALUES (172, 1, 7);
+INSERT INTO `ums_role_menu_relation` VALUES (173, 1, 10);
+INSERT INTO `ums_role_menu_relation` VALUES (174, 1, 11);
+INSERT INTO `ums_role_menu_relation` VALUES (175, 1, 12);
+INSERT INTO `ums_role_menu_relation` VALUES (176, 1, 13);
+INSERT INTO `ums_role_menu_relation` VALUES (177, 1, 19);
+INSERT INTO `ums_role_menu_relation` VALUES (178, 1, 20);
+INSERT INTO `ums_role_menu_relation` VALUES (179, 1, 24);
+INSERT INTO `ums_role_menu_relation` VALUES (180, 1, 25);
+INSERT INTO `ums_role_menu_relation` VALUES (181, 1, 26);
+INSERT INTO `ums_role_menu_relation` VALUES (182, 1, 27);
 
 -- ----------------------------
 -- Table structure for ums_role_permission_relation
@@ -446,7 +557,7 @@ CREATE TABLE `ums_role_permission_relation`  (
   `role_id` bigint(20) NULL DEFAULT NULL,
   `permission_id` bigint(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 83 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 257 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_role_permission_relation
@@ -482,5 +593,28 @@ INSERT INTO `ums_role_permission_relation` VALUES (252, 1, 43);
 INSERT INTO `ums_role_permission_relation` VALUES (253, 1, 44);
 INSERT INTO `ums_role_permission_relation` VALUES (254, 1, 45);
 INSERT INTO `ums_role_permission_relation` VALUES (255, 1, 46);
+INSERT INTO `ums_role_permission_relation` VALUES (256, 8, 1);
+
+-- ----------------------------
+-- Table structure for verification_code
+-- ----------------------------
+DROP TABLE IF EXISTS `verification_code`;
+CREATE TABLE `verification_code`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '验证码',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
+  `status` int(255) NULL DEFAULT NULL COMMENT '状态：1有效、0过期',
+  `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '验证码类型：email或者短信',
+  `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '接收邮箱或者手机号码',
+  `scenes` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '业务名称：如重置邮箱、重置密码等',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of verification_code
+-- ----------------------------
+INSERT INTO `verification_code` VALUES (21, 'C42QOG', '2019-08-26 14:43:52', 0, 'email', '190690229@qq.com', '重置邮箱');
+INSERT INTO `verification_code` VALUES (22, 'IINTJT', '2019-08-26 15:37:58', 0, 'email', '190690229@qq.com', '重置邮箱');
+INSERT INTO `verification_code` VALUES (23, 'H1ENCE', '2019-08-26 15:39:09', 0, 'email', '190690229@qq.com', '重置邮箱');
 
 SET FOREIGN_KEY_CHECKS = 1;
