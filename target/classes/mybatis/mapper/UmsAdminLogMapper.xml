@@ -31,6 +31,9 @@
   <select id="selectUmsAdminLogListLikeUmsAdminLog" parameterType="com.tmall.model.UmsAdminLog" resultMap="BaseResultMap">
  	SELECT * FROM ums_admin_log
 	<where>
+		<if test="logType != null">
+			AND log_type = #{logType}
+		</if>
 		<if test="creater != null">
 			AND creater = #{creater}
 		</if>
